@@ -1,18 +1,18 @@
 const dataArray = [];
 
-const getAll = async () =>  dataArray;
+const getAllMemory = async () =>  dataArray;
 
-const postUser = async ( createUser ) => {
+const postUserMemory = async ( createUser ) => {
   dataArray.push( createUser );
   return createUser;
 };
 
-const getID = async( idNumber ) => {
+const getIDMemory = async( idNumber ) => {
   const idU = dataArray.find(( item ) => item.id === idNumber );
   return idU;
 };
 
-const putUser = async ( idNumberPut, createUserPut ) => {
+const putUserMemory = async ( idNumberPut, createUserPut ) => {
   const pU =  dataArray.find( item  => item.id === idNumberPut)
   pU.name = createUserPut.name;
   pU.login = createUserPut.login;
@@ -20,11 +20,11 @@ const putUser = async ( idNumberPut, createUserPut ) => {
   return pU;
 };
 
-const deleteUser = async( idNumberDelete ) => {
-  const index = dataArray.findIndex((item) => item.id === idNumberDelete);
-   dataArray.find( ( item ) => item.id === idNumberDelete)
+const deleteUserMemory = async( idNumberDelete ) => {
+  const index = dataArray.findIndex((item) => item.userID === idNumberDelete);
+   dataArray.find( ( item ) => item.userID === idNumberDelete)
     dataArray.splice( index, 1 );
   return dataArray;
 };
 
-module.exports = { getAll, postUser, getID, putUser, deleteUser };
+module.exports = { getAllMemory, postUserMemory, getIDMemory, putUserMemory, deleteUserMemory };

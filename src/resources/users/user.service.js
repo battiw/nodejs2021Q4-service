@@ -1,11 +1,11 @@
 const usersRepo = require('./user.memory.repository');
 
-const getAll = () => usersRepo.getAll();
-const postUser = ( createUser ) => usersRepo.postUser( createUser );
-const getID = ( idNumber ) => usersRepo.getID( idNumber );
-const putUser = ( idNumberPut, createUserPut ) => usersRepo.putUser( idNumberPut, createUserPut );
-const deleteUser = ( idNumberDelete ) => usersRepo.deleteUser( idNumberDelete );
+const getAllServis = () => usersRepo.getAllMemory();
+const postUserServis = ( createUser ) => usersRepo.postUserMemory( createUser );
+const getIDServis = ( idNumber ) => usersRepo.getIDMemory( idNumber );
+const putUserServis = ( idNumberPut, createUserPut ) => usersRepo.putUserMemory( idNumberPut, createUserPut );
+const deleteUserServis = ( idNumberDelete ) => usersRepo.deleteUserMemory( idNumberDelete );
 
 
 
-module.exports = { getAll, postUser, getID, putUser, deleteUser};
+module.exports = { getAllServis, postUserServis, getIDServis, putUserServis, deleteUserServis};
