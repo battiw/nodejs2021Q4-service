@@ -1,3 +1,5 @@
+// const deleteTasks = require('../tasks/tasks.memory.repository')
+
 const dataArrayBoard = [];
 
 const getAllBoardMemory = async () => dataArrayBoard;
@@ -13,17 +15,30 @@ const getIDBoardsMemory = async(idBoardID) =>{
 };
 
 const putBoardMemory = async( idBoardPut, createBorderPut ) => {
-const spB = dataArrayBoard.find( item => item.id === idBoardPut );
-spB.title = createBorderPut.title;
-spB.columns = createBorderPut.columns;
-return spB;
+
+  const objBoardPutindex = dataArrayBoard.findIndex(item => item.id === idBoardPut);
+  if (objBoardPutindex !== -1){
+    dataArrayBoard[objBoardPutindex] = createBorderPut;
+  };
+  return dataArrayBoard[objBoardPutindex];
+
+//   const spB = dataArrayBoard.find( item => item.id === idBoardPut );
+//   const idsearch = spB.id;
+  
+//   const spBindex = dataArrayBoard.findIndex(item => item.id === idBoardPut);
+//   createBorderPut.id = idsearch;
+  
+//   dataArrayBoard.splice(spBindex, 1);
+//   dataArrayBoard.push(createBorderPut)
+
+// return createBorderPut;
 };
 
 const deleteBoardMemory = async(idBoardDelete) => {
+  const dbID = dataArrayBoard.findIndex( item  => item.id === idBoardDelete);
+  dataArrayBoard.splice( dbID, 1 );
 
-const dbID = dataArrayBoard.findIndex( item  => item.id === idBoardDelete);
-dataArrayBoard.splice( dbID, 1 );
-return dataArrayBoard;
+  return dataArrayBoard;
 };
 
   module.exports = { getAllBoardMemory, postBoardMemory, getIDBoardsMemory, putBoardMemory, deleteBoardMemory };

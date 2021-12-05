@@ -3,33 +3,48 @@ const dataArrayTasks = [];
 const getTasks = async () => dataArrayTasks;
 
 const postTasksMemory = async(q) => {
-// createTasks.id = idBoardTask;
 dataArrayTasks.push(q);
-return dataArrayTasks;
+return q;
 };
 
-// const getIdTaskMemory = async( idTasks ) => {
-//     const searchIdTasks = dataArrayTasks.find( item => item.tasksID === idTasks ); 
-//     return searchIdTasks;
+const getIdTaskMemory = async( idTasks ) => {
+    const searchIdTasks = dataArrayTasks.find( item => item.id === idTasks ); 
+    return searchIdTasks;
+};
+
+const putTaskMemory = async(createPutTasks, idputTasks) => {
+    const objTasksPutindex = dataArrayTasks.findIndex(item => item.id === idputTasks);
+    if (objTasksPutindex !== -1){
+        dataArrayTasks[objTasksPutindex] = createPutTasks;
+    };
+    return dataArrayTasks[objTasksPutindex];
+}
+
+const deleteTaskMemory = async( idTasksDel ) => {
+    // console.log(`idTasksDel => ${idTasksDel}`)
+    // console.log(`idBoardDel => ${idBoardDel}`)
+        const searchDelTasksIndex = dataArrayTasks.findIndex( item => item.id === idTasksDel );
+        const searchDelTasksItem = dataArrayTasks.find( item => item.id === idTasksDel );
+        dataArrayTasks.splice( searchDelTasksIndex, 1 );
+        // const searchDelTasksElem = dataArrayTasks.find(item => item.id === idTasksDel);
+
+        return searchDelTasksItem;
+
+};
+
+// const deleteTaskMemoryAll = async( idBoardDelAll ) => {
+
+//         // console.log(`Delete tasks for Bord in ID ${idBoardDelAll}`)
+//         let arrInterp = [];
+//         dataArrayTasks.forEach(function (item) {
+
+//             if (item.boardId !== idBoardDelAll ){
+//                 arrInterp.push(item)
+//             }
+//                 dataArrayTasks = arrInterp;
+//         });
+//         return arrInterp;
+    
 // };
 
-// const deleteTaskMemory = async( idTasksDel ) => {
-//     const searchDelTasksElem = dataArrayTasks.find(item => item.id === idTasksDel);
-//     const searchDelTasksIndex = dataArrayTasks.findIndex( item => item.id === idTasksDel );
-//     dataArrayTasks.splice( searchDelTasksIndex, 1 );
-//     console.log(`searchDelTasksElem ====> ${searchDelTasksElem}`)
-//     console.log(`searchDelTasksElem ====> ${JSON.stringify(searchDelTasksElem)}`)
-//     return searchDelTasksElem;
-// };
-
-// const putTaskMemory = async(createPutTasks, idputTasks) => {
-//     const objTasksPut= dataArrayTasks.find(item => item.tasksID = idputTasks);
-//     objTasksPut.title = createPutTasks.title;
-//     objTasksPut.colummns = createPutTasks.colummns;
-//     objTasksPut.order = createPutTasks.order;
-//     objTasksPut.description = createPutTasks.description;
-//     return objTasksPut;
-// }
-
-
-module.exports = { getTasks, postTasksMemory, /* getIdTaskMemory, deleteTaskMemory, putTaskMemory */ };
+module.exports = { getTasks, postTasksMemory,  getIdTaskMemory, deleteTaskMemory, putTaskMemory, /* deleteTaskMemoryAll */ };

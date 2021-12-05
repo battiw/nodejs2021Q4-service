@@ -1,60 +1,53 @@
-const routerTasks = require('express').Router();
-// const { query } = require('express');
+const routerTasks = require('express').Router({mergeParams: true});
 const Task = require('./tasks.model');
 const tasksService = require('./tasks.service');
 
 routerTasks.route('/').get(async ( req, res ) => {
     const tasksAll = await tasksService.getAllTasks();
-    // console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@req.params ${tasksAll}`);
     res.status(200).json( tasksAll );
 });
 
 
 routerTasks.route('/').post(async ( req, res ) => {
-    
-    // req.body.boardId = req.params['boardId']
-    const q = req.body
-    
-    // const idBoardTask = req.params.boardId
-    // const createTasks = new Tasks(req.body)
-// console.log(`createTasks ==============> ${q}`)
-console.log(`createTasks ==============> ${JSON.stringify(q)}`)
-// console.log(`createTasks ==============> ${JSON.stringify(createTasks)}`)
-
-    const tasksPost = await tasksService.postTaskServis(new Task(q));
-    console.log(`tasksPost ===> ${tasksPost}`)
-    console.log(`tasksPost ===> ${JSON.stringify(tasksPost)}`)
+    const idBoardTask = req.params;
+    const createTasks = new Task({...req.body, ...idBoardTask});
+    const tasksPost = await tasksService.postTaskServis(createTasks);
     res.status(201).json(tasksPost);
 });
 
 
-// routerTasks.route('/:id/tasks/:tasksId').get(async ( req, res ) => {
-//     const idTasks = req.params.tasksId
-//     console.log(`idTasks ==========> ${idTasks}`)
-//     const tasksgetId = await tasksService.getIdTaskServis(idTasks);
-//     console.log(`tasksgetId =============> ${tasksgetId}`)
-//     console.log(`tasksgetId =============> ${JSON.stringify(tasksgetId)}`)
-//     res.status(200).json(tasksgetId);
-// });
+routerTasks.route('/:taskId').get(async ( req, res ) => {
+    const idTasks = req.params.taskId
+    const tasksgetId = await tasksService.getIdTaskServis(idTasks);
+    if (!tasksgetId) {
+        res.status(404).json();
+      } else {
+        res.status(200).json(tasksgetId);
+      }
 
-// routerTasks.route('/:id/tasks/:tasksId').put(async ( req, res ) => {
-    
-//     const idputTasks = req.params.tasksId
-//     const createPutTasks = new Tasks(req.body)
+});
 
-//     const tasksPut = await tasksService.putTaskServis(createPutTasks, idputTasks);
-//     res.status(200).json(tasksPut);
-// });
+routerTasks.route('/:taskId').put(async ( req, res ) => {
+    const idputTasks = req.params.taskId;
+    const createPutTasks = new Task(req.body)
+    const tasksPut = await tasksService.putTaskServis(createPutTasks, idputTasks);
+    res.status(200).json(tasksPut);
+});
 
 
-// router.route('/:id/tasks/:tasksId').delete(async ( req, res ) => {
-//     const idTasksDel = req.params.tasksId
-//     console.log(`idTasksDel ==========> ${idTasksDel}`)
-//     const tasksdelId = await tasksService.deleteTaskServis(idTasksDel);
-    
-//     console.log(`tasksdelId ==========> ${tasksdelId}`)
-//     res.status(200).json(tasksdelId);
-// });
+routerTasks.route('/:taskId').delete(async ( req, res ) => {
+    const idTasksDel = req.params.taskId
+    // console.log(`idTasksDel ==========> ${idBoardDel}`)
+    // console.log(`idTasksDel ==========> ${idTasksDel}`)
+    const tasksdelId = await tasksService.deleteTaskServis(idTasksDel);
+    // console.log(`tasksdelId ==========> ${JSON.stringify(tasksdelId)}`)
+    res.status(205).json(tasksdelId);
+    // if (!tasksdelId) {
+    //     res.status(404).json();
+    // } else {
+    //     res.status(200).json(tasksdelId);
+    //   }
+});
 
 
 
