@@ -1,4 +1,4 @@
-const dataArrayTasks = [];
+const {dataArrayTasks} = require('../db');
 
 const getTasks = async () => dataArrayTasks;
 

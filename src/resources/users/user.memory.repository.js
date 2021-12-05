@@ -1,4 +1,4 @@
-const dataArray = [];
+const {dataArray} = require('../db');
 
 const getAllMemory = async () =>  dataArray;
 
@@ -21,6 +21,8 @@ const putUserMemory = async ( idNumberPut, createUserPut ) => {
 };
 
 const deleteUserMemory = async( idNumberDelete ) => {
+
+  // найти таску в которой есть фйдди юзера ротравнять 0
   const index = dataArray.findIndex((item) => item.userID === idNumberDelete);
    dataArray.find( ( item ) => item.userID === idNumberDelete)
     dataArray.splice( index, 1 );

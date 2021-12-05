@@ -41,7 +41,7 @@ routerTasks.route('/:taskId').delete(async ( req, res ) => {
     // console.log(`idTasksDel ==========> ${idTasksDel}`)
     const tasksdelId = await tasksService.deleteTaskServis(idTasksDel);
     // console.log(`tasksdelId ==========> ${JSON.stringify(tasksdelId)}`)
-    res.status(205).json(tasksdelId);
+    res.status(200).json(tasksdelId);
     // if (!tasksdelId) {
     //     res.status(404).json();
     // } else {

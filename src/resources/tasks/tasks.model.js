@@ -6,7 +6,7 @@ class Task {
   title = 'title',
   order = 'order',
   description = 'description',
-  userId = uuidv4(), 
+  userId = null, 
   boardId = null,
   columnId = null
 
