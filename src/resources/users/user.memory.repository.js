@@ -20,16 +20,36 @@ const putUserMemory = async ( idNumberPut, createUserPut ) => {
   return pU;
 };
 
-const deleteUserMemory = async( idNumberDelete ) => {
-   const b = dataArrayTasks.findIndex(item => item.userId === idNumberDelete  )
-   if ( b !== -1 ){
-      dataArrayTasks.splice( b, 1 );
-   };
+// const deleteUserMemory = async( idNumberDelete ) => {
+//    const b = dataArrayTasks.findIndex(item => item.userId === idNumberDelete  )
+//    if ( b !== -1 ){
+//       dataArrayTasks.splice( b, 1 );
+//    };
 
-  const index = dataArray.findIndex((item) => item.userId === idNumberDelete);
-   dataArray.find( ( item ) => item.userID === idNumberDelete)
-   dataArray.splice( index, 1 );
-  return dataArray;
+//   const index = dataArray.findIndex((item) => item.userId === idNumberDelete);
+//    dataArray.find( ( item ) => item.userID === idNumberDelete)
+//    dataArray.splice( index, 1 );
+//   return dataArray;
+// };
+const deleteUserMemory = async (idNumberDelete) => {
+  const userIndex = dataArray.findIndex((el) => el.id === idNumberDelete);
+
+  for (let i = 0; i < dataArrayTasks.length; i += 1) {
+    const taskIndex = dataArrayTasks.findIndex(
+      (el) => el.userId === idNumberDelete
+    );
+    if (taskIndex !== -1) {
+      dataArrayTasks[taskIndex] = {
+        ...dataArrayTasks[taskIndex],
+        userId: null,
+      };
+    }
+  }
+
+  const deletedObj = { ...dataArray[userIndex] };
+
+  dataArray.splice(userIndex, 1);
+
+  return deletedObj;
 };
-
 module.exports = { getAllMemory, postUserMemory, getIDMemory, putUserMemory, deleteUserMemory };
