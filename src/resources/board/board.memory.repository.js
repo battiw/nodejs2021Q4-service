@@ -1,7 +1,4 @@
-// const deleteTasks = require('../tasks/tasks.memory.repository')
-
-// const dataArrayBoard = [];
-const {dataArrayBoard} = require('../db');
+const {dataArrayBoard, dataArrayTasks} = require('../db');
 
 const getAllBoardMemory = async () => dataArrayBoard;
 
@@ -25,12 +22,15 @@ const putBoardMemory = async( idBoardPut, createBorderPut ) => {
 
 };
 
-const deleteBoardMemory = async(idBoardDelete) => {
-  // 'r DB'+ doska
+const deleteBoardMemory = async( idBoardDelete ) => {
+    const indB = dataArrayTasks.findIndex(item => item.userId === idBoardDelete)
+    if ( indB !== -1 ){
+      dataArrayTasks.splice( indB, 1 );
+    };
+
   const dbID = dataArrayBoard.findIndex( item  => item.id === idBoardDelete);
   dataArrayBoard.splice( dbID, 1 );
-
   return dataArrayBoard;
 };
 
-  module.exports = { getAllBoardMemory, postBoardMemory, getIDBoardsMemory, putBoardMemory, deleteBoardMemory };
+module.exports = { getAllBoardMemory, postBoardMemory, getIDBoardsMemory, putBoardMemory, deleteBoardMemory };

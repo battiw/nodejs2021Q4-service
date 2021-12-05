@@ -1,9 +1,6 @@
 const router = require('express').Router();
-// const { query } = require('express');
 const User = require('./user.model');
 const usersService = require('./user.service');
-
-    
 
 router.route('/').get(async ( req, res ) => {
   const users = await usersService.getAllServis();
@@ -20,13 +17,11 @@ router.route( '/' ).post( async ( req, res ) => {
 router.route( '/:id' ).get( async ( req, res ) => {
     const idNumber = req.params.id;
     const usersid = await usersService.getIDServis( idNumber );
-    // res.status(200).json( User.toResponse(usersid));
         if (!usersid) {
           res.status(404).json();
         } else {
           res.status(200).json( User.toResponse(usersid));
-        }
-
+        };
 });
 
 
@@ -41,6 +36,7 @@ router.route( '/:id' ).delete( async ( req, res ) => {
   const idNumberDelete = req.params.id;
       const usersDelete = await usersService.deleteUserServis( idNumberDelete );
       res.status(200).json( User.toResponse( usersDelete ));
+
 });
 
 module.exports = router;
