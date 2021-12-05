@@ -20,17 +20,6 @@ const putUserMemory = async ( idNumberPut, createUserPut ) => {
   return pU;
 };
 
-// const deleteUserMemory = async( idNumberDelete ) => {
-//    const b = dataArrayTasks.findIndex(item => item.userId === idNumberDelete  )
-//    if ( b !== -1 ){
-//       dataArrayTasks.splice( b, 1 );
-//    };
-
-//   const index = dataArray.findIndex((item) => item.userId === idNumberDelete);
-//    dataArray.find( ( item ) => item.userID === idNumberDelete)
-//    dataArray.splice( index, 1 );
-//   return dataArray;
-// };
 const deleteUserMemory = async (idNumberDelete) => {
   const userIndex = dataArray.findIndex((el) => el.id === idNumberDelete);
 
