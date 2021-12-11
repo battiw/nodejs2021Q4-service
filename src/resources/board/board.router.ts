@@ -28,27 +28,32 @@ boardRouter.route('/').post(async (req: Request, res: Response) => {
 });
 
 boardRouter.route('/:boardId').get(async (req: Request, res: Response) => {
-  const idBoardID = req.params.boardId;
-  const boardsID = await getIDBoardsServis(idBoardID);
-  if (!boardsID) {
-    res.status(404).json();
-  } else {
-    res.status(200).json(boardsID);
+  const idBoardID = req.params['boardId'];
+  if (idBoardID !== undefined) {
+    const boardsID = await getIDBoardsServis(idBoardID);
+    if (!boardsID) {
+      res.status(404).json();
+    } else {
+      res.status(200).json(boardsID);
+    }
   }
 });
 
 boardRouter.route('/:boardId').put(async (req: Request, res: Response) => {
-  const idBoardPut = req.params.boardId;
+  const idBoardPut = req.params['boardId'];
   const createBorderPut = new Board(req.body);
-  const boardPut = await putBoardServis(idBoardPut, createBorderPut);
-  res.status(200).json(boardPut);
+  if (idBoardPut !== undefined) {
+    const boardPut = await putBoardServis(idBoardPut, createBorderPut);
+    res.status(200).json(boardPut);
+  }
 });
 
 boardRouter.route('/:boardId').delete(async (req: Request, res: Response) => {
-  const idBoardDelete = req.params.boardId;
-  const boardDelete = await deleteBoardServis(idBoardDelete);
-
-  res.status(200).json(boardDelete);
+  const idBoardDelete = req.params['boardId'];
+  if (idBoardDelete !== undefined) {
+    const boardDelete = await deleteBoardServis(idBoardDelete);
+    res.status(200).json(boardDelete);
+  }
 });
 
 export { boardRouter };

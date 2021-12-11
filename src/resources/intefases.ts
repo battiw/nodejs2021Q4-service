@@ -1,5 +1,10 @@
+interface IColumn {
+  id: string;
+  title: string;
+  order: number;
+}
 export interface IUser {
-  id: number;
+  id: string;
   name: string;
   login: string;
   password: string;
@@ -8,15 +13,15 @@ export interface IUser {
 export interface ITask {
   id: string;
   title: string;
-  order: string;
+  order: number;
   description: string;
-  userId: string;
-  boardId: string;
-  columnId: string;
+  userId: string | null;
+  boardId: string | null;
+  columnId: string | null;
 }
 
 export interface IBoard {
   id: string;
   title: string;
-  order: string[];
+  columns: IColumn[];
 }

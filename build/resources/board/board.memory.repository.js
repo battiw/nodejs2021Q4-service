@@ -1,31 +1,37 @@
-import { dataArrayBoardDB, dataArrayTasksDB } from '../db';
-const getAllBoardMemory = async () => dataArrayBoardDB;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteBoardMemory = exports.putBoardMemory = exports.getIDBoardsMemory = exports.postBoardMemory = exports.getAllBoardMemory = void 0;
+const db_1 = require("../db");
+const getAllBoardMemory = async () => db_1.dataArrayBoardDB;
+exports.getAllBoardMemory = getAllBoardMemory;
 const postBoardMemory = async (createBoard) => {
-    dataArrayBoardDB.push(createBoard);
+    db_1.dataArrayBoardDB.push(createBoard);
     return createBoard;
 };
+exports.postBoardMemory = postBoardMemory;
 const getIDBoardsMemory = async (idBoardID) => {
-    const idB = dataArrayBoardDB.find((item) => item.id === idBoardID);
+    const idB = db_1.dataArrayBoardDB.find((item) => item.id === idBoardID);
     return idB;
 };
+exports.getIDBoardsMemory = getIDBoardsMemory;
 const putBoardMemory = async (idBoardPut, createBorderPut) => {
-    const objBoardPutindex = dataArrayBoardDB.findIndex((item) => item.id === idBoardPut);
+    const objBoardPutindex = db_1.dataArrayBoardDB.findIndex((item) => item.id === idBoardPut);
     if (objBoardPutindex !== -1) {
-        dataArrayBoardDB[objBoardPutindex] = createBorderPut;
+        db_1.dataArrayBoardDB[objBoardPutindex] = createBorderPut;
     }
-    ;
-    return dataArrayBoardDB[objBoardPutindex];
+    return db_1.dataArrayBoardDB[objBoardPutindex];
 };
+exports.putBoardMemory = putBoardMemory;
 const deleteBoardMemory = async (idBoardDelete) => {
-    const boardIndex = dataArrayBoardDB.findIndex((el) => el.id === idBoardDelete);
-    const board = dataArrayBoardDB[boardIndex];
-    dataArrayBoardDB.splice(boardIndex, 1);
+    const boardIndex = db_1.dataArrayBoardDB.findIndex((el) => el.id === idBoardDelete);
+    const board = db_1.dataArrayBoardDB[boardIndex];
+    db_1.dataArrayBoardDB.splice(boardIndex, 1);
     while (true) {
-        const taskIndex = dataArrayTasksDB.findIndex((el) => el.boardId === idBoardDelete);
+        const taskIndex = db_1.dataArrayTasksDB.findIndex((el) => el.boardId === idBoardDelete);
         if (taskIndex === -1)
             break;
-        dataArrayTasksDB.splice(taskIndex, 1);
+        db_1.dataArrayTasksDB.splice(taskIndex, 1);
     }
     return board;
 };
-export { getAllBoardMemory, postBoardMemory, getIDBoardsMemory, putBoardMemory, deleteBoardMemory };
+exports.deleteBoardMemory = deleteBoardMemory;

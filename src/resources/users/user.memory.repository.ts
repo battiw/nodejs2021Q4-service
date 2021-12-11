@@ -1,4 +1,5 @@
-import { dataArrayDB, dataArrayTasksDB, IUser } from '../db';
+import { dataArrayDB, dataArrayTasksDB } from '../db';
+import { IUser } from '../intefases';
 
 const getAllMemory = async () => dataArrayDB;
 
@@ -12,12 +13,22 @@ const getIDMemory = async (idNumber: string) => {
   return idU;
 };
 
-const putUserMemory = async (idNumberPut: string, createUserPut: IUser) => {
+const putUserMemory = async (createUserPut: IUser, idNumberPut: string) => {
   const pU = dataArrayDB.find((item) => item.id === idNumberPut);
-  pU.name = createUserPut.name;
-  pU.login = createUserPut.login;
-  pU.password = createUserPut.password;
+  if (pU !== undefined) {
+    pU.name = createUserPut.name;
+    pU.login = createUserPut.login;
+    pU.password = createUserPut.password;
+  }
   return pU;
+
+  // const objUserPutIndex = dataArrayDB.findIndex(
+  //   (item) => item.id === idNumberPut
+  // );
+  // if (objUserPutIndex !== -1) {
+  //   dataArrayDB[objUserPutIndex] = createUserPut;
+  // }
+  // return dataArrayDB[objUserPutIndex];
 };
 
 const deleteUserMemory = async (idNumberDelete: string) => {

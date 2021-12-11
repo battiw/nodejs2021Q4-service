@@ -1,33 +1,49 @@
-import { dataArrayDB, dataArrayTasksDB } from '../db';
-const getAllMemory = async () => dataArrayDB;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteUserMemory = exports.putUserMemory = exports.getIDMemory = exports.postUserMemory = exports.getAllMemory = void 0;
+const db_1 = require("../db");
+const getAllMemory = async () => db_1.dataArrayDB;
+exports.getAllMemory = getAllMemory;
 const postUserMemory = async (createUser) => {
-    dataArrayDB.push(createUser);
+    db_1.dataArrayDB.push(createUser);
     return createUser;
 };
+exports.postUserMemory = postUserMemory;
 const getIDMemory = async (idNumber) => {
-    const idU = dataArrayDB.find((item) => item.id === idNumber);
+    const idU = db_1.dataArrayDB.find((item) => item['id'] === idNumber);
     return idU;
 };
-const putUserMemory = async (idNumberPut, createUserPut) => {
-    const pU = dataArrayDB.find(item => item.id === idNumberPut);
-    pU.name = createUserPut.name;
-    pU.login = createUserPut.login;
-    pU.password = createUserPut.password;
+exports.getIDMemory = getIDMemory;
+const putUserMemory = async (createUserPut, idNumberPut) => {
+    const pU = db_1.dataArrayDB.find((item) => item['id'] === idNumberPut);
+    if (pU !== undefined) {
+        pU.name = createUserPut.name;
+        pU.login = createUserPut.login;
+        pU.password = createUserPut.password;
+    }
     return pU;
+    // const objUserPutIndex = dataArrayDB.findIndex(
+    //   (item) => item.id === idNumberPut
+    // );
+    // if (objUserPutIndex !== -1) {
+    //   dataArrayDB[objUserPutIndex] = createUserPut;
+    // }
+    // return dataArrayDB[objUserPutIndex];
 };
+exports.putUserMemory = putUserMemory;
 const deleteUserMemory = async (idNumberDelete) => {
-    const userIndex = dataArrayDB.findIndex((el) => el.id === idNumberDelete);
-    for (let i = 0; i < dataArrayTasksDB.length; i += 1) {
-        const taskIndex = dataArrayTasksDB.findIndex((el) => el.userId === idNumberDelete);
+    const userIndex = db_1.dataArrayDB.findIndex((el) => el['id'] === idNumberDelete);
+    for (let i = 0; i < db_1.dataArrayTasksDB.length; i += 1) {
+        const taskIndex = db_1.dataArrayTasksDB.findIndex((el) => el.userId === idNumberDelete);
         if (taskIndex !== -1) {
-            dataArrayTasksDB[taskIndex] = {
-                ...dataArrayTasksDB[taskIndex],
+            db_1.dataArrayTasksDB[taskIndex] = {
+                ...db_1.dataArrayTasksDB[taskIndex],
                 userId: null,
             };
         }
     }
-    const deletedObj = { ...dataArrayDB[userIndex] };
-    dataArrayDB.splice(userIndex, 1);
+    const deletedObj = { ...db_1.dataArrayDB[userIndex] };
+    db_1.dataArrayDB.splice(userIndex, 1);
     return deletedObj;
 };
-export { getAllMemory, postUserMemory, getIDMemory, putUserMemory, deleteUserMemory };
+exports.deleteUserMemory = deleteUserMemory;

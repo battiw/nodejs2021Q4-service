@@ -1,7 +1,7 @@
 import { v4 as uuidv4IdUser } from 'uuid';
 
 class User {
-  id: string | number;
+  id: string;
 
   name: string;
 
@@ -22,9 +22,9 @@ class User {
   }
 
   static toResponse(user: {
-    id: string | number;
-    name: string;
-    login: string;
+    id?: string | undefined;
+    name?: string | undefined;
+    login?: string | undefined;
   }) {
     const { id, name, login } = user;
     return { id, name, login };

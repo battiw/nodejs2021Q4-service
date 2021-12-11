@@ -1,6 +1,9 @@
-import { v4 as uuidv4 } from 'uuid';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Task = void 0;
+const uuid_1 = require("uuid");
 class Task {
-    constructor({ id = uuidv4(), title = 'title', order = 'order', description = 'description', userId = null, boardId = null, columnId = null } = {}) {
+    constructor({ id = (0, uuid_1.v4)(), title = 'title', order = 0, description = 'description', userId = null, boardId = null, columnId = null, } = {}) {
         this.id = id;
         this.title = title;
         this.order = order;
@@ -10,4 +13,4 @@ class Task {
         this.columnId = columnId;
     }
 }
-export { Task };
+exports.Task = Task;

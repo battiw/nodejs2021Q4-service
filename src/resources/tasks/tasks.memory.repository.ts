@@ -1,4 +1,5 @@
-import { dataArrayTasksDB, ITask } from '../db';
+import { dataArrayTasksDB } from '../db';
+import { ITask } from '../intefases';
 
 const getTasks = async () => dataArrayTasksDB;
 

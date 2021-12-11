@@ -5,13 +5,9 @@ class Column {
 
   title: string;
 
-  order: string;
+  order: number;
 
-  constructor({
-    id = uuidv4IDColumn(),
-    title = 'title',
-    order = 'order',
-  } = {}) {
+  constructor({ id = uuidv4IDColumn(), title = 'title', order = 1 } = {}) {
     this.id = id;
     this.title = title;
     this.order = order;

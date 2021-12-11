@@ -5,20 +5,20 @@ class Task {
 
   title: string;
 
-  order: string;
+  order: number;
 
   description: string;
 
-  userId: string | null;
+  userId: null;
 
-  boardId: string | null;
+  boardId: null;
 
-  columnId: string | null;
+  columnId: null;
 
   constructor({
     id = uuidv4(),
     title = 'title',
-    order = 'order',
+    order = 0,
     description = 'description',
     userId = null,
     boardId = null,

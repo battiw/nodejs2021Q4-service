@@ -6,7 +6,7 @@ class Board {
 
   title: string;
 
-  columns: string[];
+  columns: Column[];
 
   constructor({ id = uuidv4IDBoard(), title = 'title', columns = [] } = {}) {
     this.id = id;

@@ -1,4 +1,5 @@
-import { dataArrayBoardDB, dataArrayTasksDB, IBoard } from '../db';
+import { dataArrayBoardDB, dataArrayTasksDB } from '../db';
+import { IBoard } from '../intefases';
 
 const getAllBoardMemory = async () => dataArrayBoardDB;
 
@@ -14,7 +15,7 @@ const getIDBoardsMemory = async (idBoardID: string) => {
   return idB;
 };
 
-const putBoardMemory = async (idBoardPut: string, createBorderPut: any) => {
+const putBoardMemory = async (idBoardPut: string, createBorderPut: IBoard) => {
   const objBoardPutindex = dataArrayBoardDB.findIndex(
     (item: { id: string }) => item.id === idBoardPut
   );
@@ -33,7 +34,7 @@ const deleteBoardMemory = async (idBoardDelete: string) => {
 
   while (true) {
     const taskIndex = dataArrayTasksDB.findIndex(
-      (el: { boardId: string }) => el.boardId === idBoardDelete
+      (el) => el.boardId === idBoardDelete
     );
     if (taskIndex === -1) break;
     dataArrayTasksDB.splice(taskIndex, 1);
