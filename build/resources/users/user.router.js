@@ -42,15 +42,9 @@ routerUser.route('/:id').put(async (req, res) => {
     }
 });
 routerUser.route('/:id').delete(async (req, res) => {
-    // const idNumberDelete = req.params.id;
-    // const usersDelete = await deleteUserServis(idNumberDelete);
-    // res.status(200).json(User.toResponse(usersDelete));
     const idNumberDelete = req.params['id'];
-    if (idNumberDelete !== undefined) {
-        const usersDelete = await (0, user_service_1.deleteUserServis)(idNumberDelete);
-        res.status(200).json(user_model_1.User.toResponse(usersDelete));
-    }
-    else {
-        res.status(404).json();
-    }
+    if (!idNumberDelete)
+        return res.status(200).json({});
+    const usersDelete = await (0, user_service_1.deleteUserServis)(idNumberDelete);
+    return res.status(200).json(user_model_1.User.toResponse(usersDelete));
 });

@@ -26,7 +26,8 @@ const deleteBoardMemory = async (idBoardDelete) => {
     const boardIndex = db_1.dataArrayBoardDB.findIndex((el) => el.id === idBoardDelete);
     const board = db_1.dataArrayBoardDB[boardIndex];
     db_1.dataArrayBoardDB.splice(boardIndex, 1);
-    while (true) {
+    // while (true) {
+    while (db_1.dataArrayTasksDB.length !== 0) {
         const taskIndex = db_1.dataArrayTasksDB.findIndex((el) => el.boardId === idBoardDelete);
         if (taskIndex === -1)
             break;

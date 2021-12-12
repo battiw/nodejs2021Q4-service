@@ -39,10 +39,12 @@ const deleteUserMemory = async (idNumberDelete: string) => {
       (el) => el.userId === idNumberDelete
     );
     if (taskIndex !== -1) {
-      dataArrayTasksDB[taskIndex] = {
-        ...dataArrayTasksDB[taskIndex],
-        userId: null,
-      };
+      if (dataArrayTasksDB !== undefined) {
+        dataArrayTasksDB[taskIndex] = {
+          ...dataArrayTasksDB[taskIndex],
+          userId: null,
+        };
+      }
     }
   }
 

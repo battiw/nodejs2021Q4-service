@@ -32,7 +32,7 @@ const deleteBoardMemory = async (idBoardDelete: string) => {
   const board = dataArrayBoardDB[boardIndex];
   dataArrayBoardDB.splice(boardIndex, 1);
 
-  while (true) {
+  while (dataArrayTasksDB.length !== 0) {
     const taskIndex = dataArrayTasksDB.findIndex(
       (el) => el.boardId === idBoardDelete
     );
