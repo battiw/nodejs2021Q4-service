@@ -21,6 +21,10 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true
   },
+  // "typedocOptions": {
+  //   "entryPoints": ["src/server.ts"],
+  //   "out": "docs"
+  // },
   "exclude": ["node_modules/"],
   "include": ["./src/**/*.ts"]
 }

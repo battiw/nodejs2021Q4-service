@@ -1,5 +1,13 @@
 import { v4 as uuidv4IdUser } from 'uuid';
 
+/**
+ * User creation funcrion
+ *
+ * @param id - id urer
+ * @param name - name user
+ * @param login - login user
+ * @param password - password
+ */
 class User {
   id: string;
 
@@ -20,6 +28,14 @@ class User {
     this.login = login;
     this.password = password;
   }
+
+  /**
+   * Static method toResponse transforming object
+   * @param id - an identification number
+   * @param name - username
+   * @param login - login user
+   * @returns Object with given parameters
+   */
 
   static toResponse(user: {
     id?: string | undefined;

@@ -1,0 +1,18 @@
+{
+  "entryPoints": ["src/server.ts"],
+  "out": "docs",
+  "entryPointStrategy": "resolve",
+  "excludeExternals": "false",
+  "excludeNotDocumented": "false",
+  "excludeInternal": "false",
+  "excludePrivate": "false",
+  "excludeProtected": "false",
+  "disableSources": "false",
+  "emit": "docs",
+  "theme": "default",
+  "darkHighlightTheme": "dark-plus",
+  "name": "TSDoc for typescript basics project",
+  "categorizeByGroup": "false",
+  "sort": "source-order",
+  "logLevel": "Verbose"
+}

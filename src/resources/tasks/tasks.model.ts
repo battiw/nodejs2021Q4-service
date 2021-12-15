@@ -1,5 +1,17 @@
 import { v4 as uuidv4 } from 'uuid';
 
+/**
+ * Task creation funcrion
+ *
+ * @param id - id task
+ * @param title - title task
+ * @param order - order task
+ * @param description - login user
+ * @param userId - id user
+ * @param boardId - id board
+ * @param columnId - id column
+ */
+
 class Task {
   id: string;
 

@@ -1,6 +1,13 @@
 import { v4 as uuidv4IDBoard } from 'uuid';
 import { Column } from './column.model';
 
+/**
+ * Board creation funcrion
+ *
+ * @param id - id board
+ * @param title - title board
+ * @param columns - array of columns
+ */
 class Board {
   id: string;
 

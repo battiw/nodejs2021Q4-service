@@ -9,6 +9,9 @@ const path_1 = __importDefault(require("path"));
 dotenv_1.default.config({
     path: path_1.default.join(__dirname, '../../.env'),
 });
+/**
+ *  A simple string constant.
+ */
 exports.config = {
     PORT: process.env['PORT'],
     NODE_ENV: process.env['NODE_ENV'],
