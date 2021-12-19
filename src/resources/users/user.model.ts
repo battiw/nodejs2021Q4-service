@@ -1,12 +1,12 @@
 import { v4 as uuidv4IdUser } from 'uuid';
 
 /**
- * User creation funcrion
+ * User creation function
  *
- * @param id - id urer
+ * @param id - id user
  * @param name - name user
  * @param login - login user
- * @param password - password
+ * @param password - password of user
  */
 class User {
   id: string;

@@ -6,9 +6,6 @@ import YAML from 'yamljs';
 import { routerUser } from './resources/users/user.router';
 import { boardRouter } from './resources/board/board.router';
 
-/**
- * Сreating an application object
- */
 const app = Express();
 const swaggerDocument = YAML.load(
   pathToSwagg.join(__dirname, '../doc/api.yaml')
@@ -30,7 +27,4 @@ app.use('/users', routerUser);
 
 app.use('/boards', boardRouter);
 
-/**
- *@module Сreating an application object and routing
- */
 export { app };
