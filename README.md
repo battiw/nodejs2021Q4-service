@@ -37,6 +37,13 @@ To run all tests without authorization
 npm test
 ```
 
+Run documentation
+
+```
+npm run docs
+```
+In the folder docs, run the file index.html
+
 To run only one of all test suites (users, boards or tasks)
 
 ```
