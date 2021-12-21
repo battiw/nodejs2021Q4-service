@@ -45,6 +45,7 @@
     "no-underscore-dangle": "off",
     "import/prefer-default-export": "off",
     "dot-notation": "off",
-    "@typescript-eslint/dot-notation": ["error"]
+    "@typescript-eslint/dot-notation": ["error"],
+    "@typescript-eslint/no-explicit-any": "error"
   }
 }
