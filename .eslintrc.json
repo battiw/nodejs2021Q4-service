@@ -46,6 +46,15 @@
     "import/prefer-default-export": "off",
     "dot-notation": "off",
     "@typescript-eslint/dot-notation": ["error"],
-    "@typescript-eslint/no-explicit-any": "error"
+    "@typescript-eslint/no-explicit-any": "error",
+    "func-names": 0,
+    "no-console": 0,
+    "prefer-arrow-callback": 0,
+    "import/no-extraneous-dependencies": 0,
+    "node/no-unpublished-import": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+    "no-unused-vars": 0,
+    "no-undef": 0,
+    "object-shorthand": 0
   }
 }
