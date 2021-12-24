@@ -78,6 +78,7 @@
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
+    "express-winston": "^4.2.0",
     "husky": "^4.3.8",
     "jest": "27.3.1",
     "lint-staged": "12.0.3",
@@ -88,6 +89,8 @@
     "ts-node": "^10.4.0",
     "tsdoc": "^0.0.4",
     "typedoc": "^0.22.10",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "winston": "^3.3.3",
+    "winston-express-middleware": "^0.1.0"
   }
 }

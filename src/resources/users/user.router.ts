@@ -8,6 +8,8 @@ import {
   deleteUserServis,
 } from './user.service';
 
+// import { logger } from '../../log/WinstonLog/loggerWinston';
+
 const routerUser = Router();
 
 routerUser.route('/').get(async (_req: Request, res: Response) => {
@@ -41,8 +43,12 @@ routerUser.route('/:userId').get(async (req: Request, res: Response) => {
      */
     const usersid = await getIDServis(idNumber);
     if (!usersid) {
+      // logger.error('error');
+
       res.status(404).json();
     } else {
+      // logger.info('info');
+
       res.status(200).json(User.toResponse(usersid));
     }
   }
@@ -60,8 +66,12 @@ routerUser.route('/:id').put(async (req: Request, res: Response) => {
      */
     const usersPut = await putUserServis(createUserPut, idNumberPut);
     if (usersPut !== undefined) {
+      // logger.info('info');
+
       res.status(200).json(User.toResponse(usersPut));
     } else {
+      // logger.error('error');
+
       res.status(404).json();
     }
   }
