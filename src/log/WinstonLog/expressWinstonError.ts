@@ -6,7 +6,7 @@ const loggerError = expressWinston.errorLogger({
   transports: [
     new winston.transports.File({
       filename: './src/log/WinstonLog/errorWinston.log',
-      level: 'error',
+      level: 'error', // заменить на env
     }),
     new winston.transports.Console(),
   ],
