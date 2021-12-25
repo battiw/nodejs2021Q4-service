@@ -1,7 +1,7 @@
 /* eslint-disable lines-between-class-members */
 /* eslint-disable no-unreachable */
-// import Express from 'express';
-import Express, { Request, Response, NextFunction } from 'express';
+import Express from 'express';
+// import Express, { Request, Response, NextFunction } from 'express';
 
 import SwaggerUI from 'swagger-ui-express';
 import pathToSwagg from 'path';
@@ -14,10 +14,13 @@ import YAML from 'yamljs';
 // import { createWriteStream } from 'fs'; // Morgan loggin
 // import { logger } from './log/WinstonLog/loggerWinston';// Winston logger
 import { loggerInfo } from './log/WinstonLog/expressWinston'; // Winston-express logger
-import { loggerError } from './log/WinstonLog/expressWinstonError'; // Winston-express logger
+// import { loggerError } from './log/WinstonLog/expressWinstonError'; // Winston-express logger
+
+import { errorValid } from './errorModule';
 
 import { routerUser } from './resources/users/user.router';
 import { boardRouter } from './resources/board/board.router';
+import { loggerError } from './log/WinstonLog/expressWinstonError';
 
 const app = Express();
 const swaggerDocument = YAML.load(
@@ -56,12 +59,12 @@ app.use(loggerInfo);
 
 app.use('/doc', SwaggerUI.serve, SwaggerUI.setup(swaggerDocument));
 app.use('/', (req, res, next) => {
-  // throw new Error('TEST ERRROR!!!');
+  // throw new SyntaxError('TEST ERRROR!!!');
+  Promise.reject(Error('Oops!'));
   if (req.originalUrl === '/') {
     res.send('Service is running!');
     return;
   }
-  // console.log(`res.statusCode =>${res.statusCode}`);
   next();
 });
 
@@ -69,16 +72,12 @@ app.use('/users', routerUser);
 
 app.use('/boards', boardRouter);
 
+// process.on('uncaughtException', function(err, ));
+
+process.on('unhandledRejection', loggerError);
+
 app.use(loggerError);
 
-app.use(function (
-  err: Error,
-  _req: Request,
-  res: Response,
-  _next: NextFunction
-) {
-  console.error(`err.stack=> ${err.stack}`);
-  res.status(500).send('Something broke!');
-});
+app.use(errorValid);
 
 export { app };
