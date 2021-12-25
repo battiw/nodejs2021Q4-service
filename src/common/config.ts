@@ -10,4 +10,7 @@ export const config = {
   MONGO_CONNECTION_STRING: process.env['MONGO_CONNECTION_STRING'],
   JWT_SECRET_KEY: process.env['JWT_SECRET_KEY'],
   AUTH_MODE: process.env['AUTH_MODE'] === 'true',
+  LOG_LEVEL: process.env['LOG_LEVEL'],
+  WARN_LEVEL: process.env['WARN_LEVEL'],
+  ERROR_LEVEL: process.env['ERROR_LEVEL'],
 };

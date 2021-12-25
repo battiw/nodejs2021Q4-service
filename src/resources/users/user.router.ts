@@ -30,7 +30,11 @@ routerUser.route('/').post(async (req: Request, res: Response) => {
    * @returns Promis added user
    */
   const usersPost = await postUserServis(createUser);
-  res.status(201).json(User.toResponse(usersPost));
+  if (usersPost !== undefined) {
+    res.status(201).json(User.toResponse(usersPost));
+  } else {
+    res.status(404).json();
+  }
 });
 
 routerUser.route('/:userId').get(async (req: Request, res: Response) => {

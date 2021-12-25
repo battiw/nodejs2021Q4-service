@@ -40,6 +40,7 @@ const putUserMemory = async (createUserPut: IUser, idNumberPut: string) => {
     pU.login = createUserPut.login;
     pU.password = createUserPut.password;
   }
+
   return pU;
 };
 

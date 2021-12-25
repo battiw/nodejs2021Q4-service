@@ -1,4 +1,8 @@
-import Express from 'express';
+/* eslint-disable lines-between-class-members */
+/* eslint-disable no-unreachable */
+// import Express from 'express';
+import Express, { Request, Response, NextFunction } from 'express';
+
 import SwaggerUI from 'swagger-ui-express';
 import pathToSwagg from 'path';
 import YAML from 'yamljs';
@@ -10,6 +14,7 @@ import YAML from 'yamljs';
 // import { createWriteStream } from 'fs'; // Morgan loggin
 // import { logger } from './log/WinstonLog/loggerWinston';// Winston logger
 import { loggerInfo } from './log/WinstonLog/expressWinston'; // Winston-express logger
+import { loggerError } from './log/WinstonLog/expressWinstonError'; // Winston-express logger
 
 import { routerUser } from './resources/users/user.router';
 import { boardRouter } from './resources/board/board.router';
@@ -50,17 +55,30 @@ app.use(Express.json());
 app.use(loggerInfo);
 
 app.use('/doc', SwaggerUI.serve, SwaggerUI.setup(swaggerDocument));
-
 app.use('/', (req, res, next) => {
+  // throw new Error('TEST ERRROR!!!');
   if (req.originalUrl === '/') {
     res.send('Service is running!');
     return;
   }
+  // console.log(`res.statusCode =>${res.statusCode}`);
   next();
 });
 
 app.use('/users', routerUser);
 
 app.use('/boards', boardRouter);
+
+app.use(loggerError);
+
+app.use(function (
+  err: Error,
+  _req: Request,
+  res: Response,
+  _next: NextFunction
+) {
+  console.error(`err.stack=> ${err.stack}`);
+  res.status(500).send('Something broke!');
+});
 
 export { app };
