@@ -20,7 +20,10 @@ npm install
 ## Running application
 
 ```
-npm start
+npm start:ts (ts-node src/server.ts)
+
+npm start (nodemon src/server.js)
+
 ```
 
 After starting the app on port (4000 as default) you can open
@@ -36,6 +39,14 @@ To run all tests without authorization
 ```
 npm test
 ```
+
+Run documentation
+
+```
+npm run docs
+```
+
+In the folder docs, run the file index.html
 
 To run only one of all test suites (users, boards or tasks)
 
@@ -55,6 +66,25 @@ To run only specific test suite with authorization (users, boards or tasks)
 npm run test:auth <suite name>
 ```
 
+## Checking Logging and Handling Errors
+
+```
+npm start:ts (ts-node src/server.ts)
+```
+
+To check the server error, uncomment line 28 file app.ts and check by running tests (npm run test).
+
+```
+For check uncaughtException, uncomment line 79 file app.ts and run npm run start:ts
+```
+
+For check unhandledRejection, uncomment line 82 file app.ts and run npm run start:ts
+
+```
+The logs are located nodejs2021Q4-service\src\log\WinstonLog
+
+```
+
 ## Development
 
 If you're using VSCode, you can get a better developer experience from integration with [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.
@@ -62,7 +92,9 @@ If you're using VSCode, you can get a better developer experience from integrati
 ### Auto-fix and format
 
 ```
+
 npm run lint
+
 ```
 
 ### Debugging in VSCode
@@ -70,3 +102,7 @@ npm run lint
 Press <kbd>F5</kbd> to debug.
 
 For more information, visit: https://code.visualstudio.com/docs/editor/debugging
+
+```
+
+```
