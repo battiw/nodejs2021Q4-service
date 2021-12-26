@@ -56,4 +56,8 @@ boardRouter.route('/:boardId').delete(async (req: Request, res: Response) => {
   }
 });
 
+boardRouter.use('/*', (_req, res) => {
+  return res.status(400).send('несуществующий адрес');
+});
+
 export { boardRouter };

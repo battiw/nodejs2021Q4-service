@@ -1,4 +1,4 @@
-import winston from 'winston'; // for tranport method
+import winston from 'winston';
 
 import expressWinston from 'express-winston';
 
@@ -6,7 +6,7 @@ const loggerError = expressWinston.errorLogger({
   transports: [
     new winston.transports.File({
       filename: './src/log/WinstonLog/errorWinston.log',
-      level: 'error', // заменить на env
+      level: process.env['ERROR_LEVEL'],
     }),
     new winston.transports.Console(),
   ],

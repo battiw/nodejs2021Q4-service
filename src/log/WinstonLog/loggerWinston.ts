@@ -1,4 +1,6 @@
-import { createLogger, format, transports } from 'winston';
+import winston from 'winston';
+
+const { createLogger, format, transports } = winston;
 
 const logger = createLogger({
   level: 'silly',

@@ -93,4 +93,8 @@ routerUser.route('/:id').delete(async (req: Request, res: Response) => {
   return res.status(200).json(User.toResponse(usersDelete));
 });
 
+routerUser.use('/*', (_req, res) => {
+  return res.status(400).send('несуществующий адрес');
+});
+
 export { routerUser };
