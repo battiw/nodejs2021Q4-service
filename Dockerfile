@@ -10,7 +10,6 @@ COPY . .
 
 EXPOSE 4000
 
-VOLUME [ "/app/datalog" ]
 
 CMD ["npm", "run", "start:dev"]
 

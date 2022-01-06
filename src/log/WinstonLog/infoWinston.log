@@ -1,0 +1,6 @@
+{"level":"info","message":"     INFO LEVEL => Thu Jan 06 2022 20:42:09 GMT+0000 (Coordinated Universal Time)\n StatusCode: 200;\n URL: /users/\n Query Parameters: {} Body: {}"}
+{"level":"info","message":"     INFO LEVEL => Thu Jan 06 2022 20:54:11 GMT+0000 (Coordinated Universal Time)\n StatusCode: 200;\n URL: /users/\n Query Parameters: {} Body: {}"}
+{"level":"info","message":"     INFO LEVEL => Thu Jan 06 2022 21:06:02 GMT+0000 (Coordinated Universal Time)\n StatusCode: 200;\n URL: /users/\n Query Parameters: {} Body: {}"}
+{"level":"info","message":"     INFO LEVEL => Thu Jan 06 2022 21:06:05 GMT+0000 (Coordinated Universal Time)\n StatusCode: 201;\n URL: /users/\n Query Parameters: {} Body: {\"name\":\"ivan\",\"login\":\"iv123\",\"password\":\"affs\"}"}
+{"level":"info","message":"     INFO LEVEL => Thu Jan 06 2022 21:06:07 GMT+0000 (Coordinated Universal Time)\n StatusCode: 404;\n URL: /q\n Query Parameters: {} Body: {\"name\":\"ivan\",\"login\":\"iv123\"}"}
+{"level":"warn","message":"     WARN LEVEL => Thu Jan 06 2022 21:06:07 GMT+0000 (Coordinated Universal Time)\n StatusCode: 404;\n URL: /q\n Query Parameters: {} Body: {\"name\":\"ivan\",\"login\":\"iv123\"}"}
