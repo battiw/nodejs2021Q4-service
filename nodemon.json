@@ -1,6 +1,9 @@
 {
-    "ignore": ["node_modules"],
-    "watch": ["./src/server.ts"],
-    "exec": "npm start:ts",
-    "ext": "ts"
+  "ignore": ["node_modules"],
+  "watch": ["./src/**/*.ts"],
+  "execMap": {
+    "ts": "ts-node"
+  },
+  "delay": "3",
+  "ext": "ts"
 }
