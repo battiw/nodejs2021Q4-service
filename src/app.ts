@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable lines-between-class-members */
 /* eslint-disable no-unreachable */
-import Express from 'express';
+import express from 'express';
+// import * as express from 'express';
 import { finished } from 'stream';
 import { logger } from './log/WinstonLog/loggerWinston';
 import { routerUser } from './resources/users/user.router';
@@ -11,9 +12,10 @@ import { config } from './common/config';
 
 const { ERROR_LEVEL, LOG_LEVEL, WARN_LEVEL } = config;
 
-const app = Express();
+const app = express();
+// const app = express.default();
 
-app.use(Express.json());
+app.use(express.json());
 
 app.use('/', (req, res, next) => {
   // throw new Error('Ops!!!');

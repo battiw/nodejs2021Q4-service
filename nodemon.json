@@ -5,5 +5,5 @@
     "ts": "ts-node"
   },
   "delay": "3",
-  "ext": "ts"
+  "ext": "ts, js"
 }
