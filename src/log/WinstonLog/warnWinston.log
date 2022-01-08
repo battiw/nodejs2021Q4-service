@@ -1,2 +1,0 @@
-{"level":"warn","message":"     WARN LEVEL => Sat Jan 08 2022 13:29:12 GMT+0000 (Coordinated Universal Time)\n StatusCode: 404;\n URL: /favicon.ico\n Query Parameters: {} Body: {}"}
-{"level":"warn","message":"     WARN LEVEL => Sat Jan 08 2022 13:41:44 GMT+0000 (Coordinated Universal Time)\n StatusCode: 404;\n URL: /q\n Query Parameters: {} Body: {\"name\":\"ivan\",\"login\":\"iv123\"}"}

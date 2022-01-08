@@ -9,7 +9,6 @@ services:
     environment:
       PORT: ${PORT}
     volumes:
-      # - ./src:/app/src
       - ./src/log/WinstonLog:/app/src/log/WinstonLog
     networks:
       - connect-network
