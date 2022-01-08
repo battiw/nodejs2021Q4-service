@@ -1,25 +1,43 @@
-FROM node:gallium AS base
-WORKDIR /app
+FROM node:16.13.1-alpine as base
 
-FROM base AS dependencies
+# Build layer
+FROM base as build
+WORKDIR /build
 COPY package*.json ./
-RUN npm install && npm cache clean --force
+RUN npm install
+COPY . .
+RUN npm run build && npm prune --production
 
-# FROM dependencies AS build
-# WORKDIR /app
-# COPY src /app
-# RUN npm run build
-
-FROM node:16.13.1-alpine AS release
+# Release layer
+FROM base
 WORKDIR /app
-COPY --from=dependencies /app/package*.json ./
+COPY package*.json ./
+COPY --from=build /build/node_modules ./node_modules
+COPY --from=build /build/build ./build
+COPY --from=build /build/.env ./
+# EXPOSE 4000
+CMD ["npm", "run", "start"]
 
-# RUN npm install --only=production
-# COPY --from=build /app ./
 
-EXPOSE 4000
 
-CMD ["npm", "run", "start:dev"]
+
+# FROM node:16.13.1-alpine AS base
+
+# FROM base AS dependencies
+# WORKDIR /user
+# COPY package*.json ./
+# RUN npm install
+# COPY . . 
+# RUN npm run build && npm prune --poduction
+
+# FROM base
+# WORKDIR /app
+# COPY package*.json ./
+# COPY --from=dependencies /user/node_modules ./node_modules
+# COPY --from=dependencies /user/build ./build
+# COPY --from=dependencies /user/.env ./
+
+# CMD ["npm", "run", "start:docker"]
 
 
 
