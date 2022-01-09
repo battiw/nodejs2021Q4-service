@@ -18,9 +18,13 @@ git clone {repository URL}
 npm install
 ```
 
+## Running Docker Desktop
+
+```
 ## Running application
 
 ```
+
 docker-compose up
 
 ```
@@ -38,6 +42,8 @@ If you're using VSCode, you can get a better developer experience from integrati
 Press <kbd>F5</kbd> to debug.
 
 For more information, visit: https://code.visualstudio.com/docs/editor/debugging
+
+```
 
 ```
 
