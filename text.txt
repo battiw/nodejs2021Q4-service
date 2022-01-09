@@ -1,7 +1,0 @@
-// {
-//   "watch": ["./app"],
-//   "ext": "ts",
-//   "ignore": ["node_modules"],
-//   "delay": "3",
-//   "legacyWatch": "true"
-// }

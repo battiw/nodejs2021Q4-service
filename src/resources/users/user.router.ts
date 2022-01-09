@@ -17,8 +17,6 @@ routerUser.route('/').get(async (_req: Request, res: Response) => {
    * Function returns all users
    * @returns Promis function call result getAllServis
    */
-  console.log('HEELLLLOOOOO&&(((((((((((((((((((DIMA77745)))))))))))))))))))');
-
   const users = await getAllServis();
   res.json(users.map(User.toResponse));
 });

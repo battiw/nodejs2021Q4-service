@@ -10,13 +10,13 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon",
-    "start": "node build/server.js",
+    "start": "nodemon build/server.js",
     "lint": "eslint --ext .js,.ts src/",
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",
     "test:auth": "cross-env DEBUG=rs:* TEST_MODE=auth jest --noStackTrace",
     "build": "tsc",
     "start:ts": "ts-node src/server.ts",
-    "start:dev": "nodemon src/server.ts",
+    "start:dev": "nodemon -L src/server.ts",
     "docs": "typedoc --entryPointStrategy expand ./src"
   },
   "keywords": [
