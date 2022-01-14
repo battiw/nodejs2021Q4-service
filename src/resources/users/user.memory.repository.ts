@@ -1,19 +1,32 @@
-import { dataArrayDB, dataArrayTasksDB } from '../db';
+import { getRepository } from 'typeorm';
+
 import { IUser } from '../intefases';
+import { User } from '../../entity/User';
 
 /**
  * Function returns all users
  * @returns Promis array of users
  */
-const getAllMemory = async () => dataArrayDB;
-
+const getAllMemory = async () => {
+  const userRepository = getRepository(User);
+  const findAllUsers = await userRepository
+    .createQueryBuilder('users')
+    .select(['id', 'name', 'login'])
+    .getRawMany();
+  return findAllUsers;
+};
 /**
  * Function adds a user to the database
  * @param createUser - user with parameters
  * @returns Promis added user
  */
 const postUserMemory = async (createUser: IUser) => {
-  dataArrayDB.push(createUser);
+  const user = new User();
+  user.id = createUser.id;
+  user.name = createUser.name;
+  user.login = createUser.login;
+  user.password = createUser.password;
+  await getRepository(User).save(user);
   return createUser;
 };
 
@@ -23,8 +36,13 @@ const postUserMemory = async (createUser: IUser) => {
  * @returns Promis an user with the given id
  */
 const getIDMemory = async (idNumber: string) => {
-  const idU = dataArrayDB.find((item: IUser) => item.id === idNumber);
-  return idU;
+  const userRepositoryID = getRepository(User);
+  const findIdUser = await userRepositoryID
+    .createQueryBuilder('users')
+    .select(['id', 'name', 'login'])
+    .where('users.id = :id', { id: idNumber })
+    .getRawOne();
+  return findIdUser;
 };
 
 /**
@@ -34,14 +52,19 @@ const getIDMemory = async (idNumber: string) => {
  * @returns Promis changed user data
  */
 const putUserMemory = async (createUserPut: IUser, idNumberPut: string) => {
-  const pU = dataArrayDB.find((item) => item.id === idNumberPut);
-  if (pU !== undefined) {
-    pU.name = createUserPut.name;
-    pU.login = createUserPut.login;
-    pU.password = createUserPut.password;
-  }
+  const userRepositoryIDPut = getRepository(User);
 
-  return pU;
+  const fineputObject = await userRepositoryIDPut
+    .createQueryBuilder()
+    .update(User)
+    .set({
+      name: createUserPut.name,
+      login: createUserPut.login,
+      password: createUserPut.password,
+    })
+    .where('id = :id', { id: idNumberPut })
+    .execute();
+  return fineputObject;
 };
 
 /**
@@ -50,27 +73,37 @@ const putUserMemory = async (createUserPut: IUser, idNumberPut: string) => {
  * @returns Promis remote user
  */
 const deleteUserMemory = async (idNumberDelete: string) => {
-  const userIndex = dataArrayDB.findIndex((el) => el.id === idNumberDelete);
+  const userRepositoryIDdel = getRepository(User);
 
-  for (let i = 0; i < dataArrayTasksDB.length; i += 1) {
-    const taskIndex = dataArrayTasksDB.findIndex(
-      (el) => el.userId === idNumberDelete
-    );
-    if (taskIndex !== -1) {
-      if (dataArrayTasksDB !== undefined) {
-        dataArrayTasksDB[taskIndex] = {
-          ...dataArrayTasksDB[taskIndex],
-          userId: null,
-        };
-      }
-    }
-  }
+  const deleteObject = await userRepositoryIDdel
+    .createQueryBuilder()
+    .delete()
+    .from(User)
+    .where('id= :id', { id: idNumberDelete })
+    .execute();
+  return deleteObject;
 
-  const deletedObj = { ...dataArrayDB[userIndex] };
+  // const userIndex = dataArrayDB.findIndex((el) => el.id === idNumberDelete);
 
-  dataArrayDB.splice(userIndex, 1);
+  // for (let i = 0; i < dataArrayTasksDB.length; i += 1) {
+  //   const taskIndex = dataArrayTasksDB.findIndex(
+  //     (el) => el.userId === idNumberDelete
+  //   );
+  //   if (taskIndex !== -1) {
+  //     if (dataArrayTasksDB !== undefined) {
+  //       dataArrayTasksDB[taskIndex] = {
+  //         ...dataArrayTasksDB[taskIndex],
+  //         userId: null,
+  //       };
+  //     }
+  //   }
+  // }
 
-  return deletedObj;
+  // const deletedObj = { ...dataArrayDB[userIndex] };
+
+  // dataArrayDB.splice(userIndex, 1);
+
+  // return deletedObj;
 };
 export {
   getAllMemory,

@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express';
+// import { User } from './user.model';
 import { User } from './user.model';
 import {
   getAllServis,
@@ -8,8 +9,6 @@ import {
   deleteUserServis,
 } from './user.service';
 
-// import { logger } from '../../log/WinstonLog/loggerWinston';
-
 const routerUser = Router();
 
 routerUser.route('/').get(async (_req: Request, res: Response) => {
@@ -18,7 +17,7 @@ routerUser.route('/').get(async (_req: Request, res: Response) => {
    * @returns Promis function call result getAllServis
    */
   const users = await getAllServis();
-  res.json(users.map(User.toResponse));
+  res.json(users);
 });
 
 routerUser.route('/').post(async (req: Request, res: Response) => {
@@ -49,7 +48,7 @@ routerUser.route('/:userId').get(async (req: Request, res: Response) => {
     if (!usersid) {
       res.status(404).json();
     } else {
-      res.status(200).json(User.toResponse(usersid));
+      res.status(200).json(usersid);
     }
   }
 });
@@ -66,7 +65,7 @@ routerUser.route('/:id').put(async (req: Request, res: Response) => {
      */
     const usersPut = await putUserServis(createUserPut, idNumberPut);
     if (usersPut !== undefined) {
-      res.status(200).json(User.toResponse(usersPut));
+      res.status(200).json(usersPut);
     } else {
       res.status(404).json();
     }
@@ -82,7 +81,8 @@ routerUser.route('/:id').delete(async (req: Request, res: Response) => {
    * @returns Promis remote user
    */
   const usersDelete = await deleteUserServis(idNumberDelete);
-  return res.status(200).json(User.toResponse(usersDelete));
+  return res.status(200).json(usersDelete);
+  // return res.status(200).json(User.toResponse(usersDelete));
 });
 
 routerUser.use('/*', (_req, res) => {

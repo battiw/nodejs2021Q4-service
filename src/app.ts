@@ -2,7 +2,6 @@
 /* eslint-disable lines-between-class-members */
 /* eslint-disable no-unreachable */
 import express from 'express';
-// import * as express from 'express';
 import { finished } from 'stream';
 import { logger } from './log/WinstonLog/loggerWinston';
 import { routerUser } from './resources/users/user.router';
