@@ -1,21 +1,49 @@
+import { getRepository } from 'typeorm';
+
 import { dataArrayBoardDB, dataArrayTasksDB } from '../db';
 import { IBoard } from '../intefases';
+import { Board } from '../../entity/Board';
+// import { Columns } from '../../entity/Columns';
 
 /**
  * Function returns all boards
  * @returns Promis array of boards
  */
-const getAllBoardMemory = async () => dataArrayBoardDB;
+
+const getAllBoardMemory = async () => {
+  const boardsRepository = getRepository(Board);
+  const findAllBoards = await boardsRepository
+    .createQueryBuilder('users')
+    .select(['id', 'title'])
+    .getRawMany();
+  return findAllBoards;
+};
+
+// const getAllBoardMemory = async () => dataArrayBoardDB;
 
 /**
  *Function adds a board to the database
  * @param createBoard - board with parameters
  * @returns Promis added board
  */
+// const postBoardMemory = async (createBoard: IBoard) => {
+// dataArrayBoardDB.push(createBoard);
+// return createBoard;
+
 const postBoardMemory = async (createBoard: IBoard) => {
-  dataArrayBoardDB.push(createBoard);
-  return createBoard;
+  const board = new Board();
+  // const columns = new Columns();
+  board.id = createBoard.id;
+  board.title = createBoard.title;
+  // board.children: Columns[] | undefined = new Columns()
+  console.log(`board => ${JSON.stringify(board)}`);
+  // console.log(`columns = > ${JSON.stringify(columns)}`);
+
+  await getRepository(Board).save(board);
+  return postBoardMemory;
 };
+
+// };
 
 /**
  *Function search for a board with a given id

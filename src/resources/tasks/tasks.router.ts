@@ -1,7 +1,10 @@
 // const routerTasks = require('express').Router({mergeParams: true});
+import 'reflect-metadata';
+
 import { Request, Response, Router } from 'express';
 
-import { Task } from './tasks.model';
+import { Task } from '../../entity/Tasks';
+// import { Task } from './tasks.model';
 import {
   getAllTasks,
   postTaskServis,
@@ -19,6 +22,9 @@ routerTasks.route('/').get(async (_req: Request, res: Response) => {
 
 routerTasks.route('/').post(async (req: Request, res: Response) => {
   const idBoardTask = req.params;
+  console.log(idBoardTask);
+  console.log(req.body);
+
   const createTasks = new Task({ ...req.body, ...idBoardTask });
   const tasksPost = await postTaskServis(createTasks);
   res.status(201).json(tasksPost);

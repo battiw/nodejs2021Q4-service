@@ -1,3 +1,5 @@
+import { getRepository } from 'typeorm';
+import { Task } from '../../entity/Tasks';
 import { dataArrayTasksDB } from '../db';
 import { ITask } from '../intefases';
 
@@ -5,7 +7,11 @@ import { ITask } from '../intefases';
  * Function returns all tasks
  * @returns Promis array of tasks
  */
-const getTasks = async () => dataArrayTasksDB;
+const findAllTasks = async () => {
+  const taskRepository = getRepository(Task);
+  const findAllTasks = await taskRepository.createQueryBuilder().getRawMany();
+  return findAllTasks;
+};
 
 /**
  * Function adds a task to the database
@@ -13,7 +19,15 @@ const getTasks = async () => dataArrayTasksDB;
  * @returns Promis added task
  */
 const postTasksMemory = async (createTasks: ITask) => {
-  dataArrayTasksDB.push(createTasks);
+  const task = new Task();
+  task.id = createTasks.id;
+  task.title = createTasks.title;
+  task.order = createTasks.order;
+  task.description = createTasks.description;
+  task.userId = createTasks.userId;
+  task.boardId = createTasks.boardId;
+  task.columnId = createTasks.columnId;
+  await getRepository(Task).save(task);
   return createTasks;
 };
 
@@ -22,9 +36,16 @@ const postTasksMemory = async (createTasks: ITask) => {
  * @param idTasks - id task
  * @returns Promis an task with the given id
  */
+
 const getIdTaskMemory = async (idTasks: string) => {
-  const searchIdTasks = dataArrayTasksDB.find((item) => item.id === idTasks);
-  return searchIdTasks;
+  const taskRepositoryID = getRepository(Task);
+  const findIdTask = await taskRepositoryID
+    .createQueryBuilder('task')
+    .select()
+    // .select(['id', 'name', 'login'])
+    .where('task.id = :id', { id: idTasks })
+    .getRawOne();
+  return findIdTask;
 };
 
 /**
@@ -61,7 +82,7 @@ const deleteTaskMemory = async (idTasksDel: string) => {
 };
 
 export {
-  getTasks,
+  findAllTasks,
   postTasksMemory,
   getIdTaskMemory,
   deleteTaskMemory,

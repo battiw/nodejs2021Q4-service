@@ -22,7 +22,7 @@ boardRouter.route('/').get(async (_req: Request, res: Response) => {
 });
 
 boardRouter.route('/').post(async (req: Request, res: Response) => {
-  const createBoard = new Board(req.body);
+  const createBoard = req.body;
   const boardPost = await postBoardServis(createBoard);
   res.status(201).json(boardPost);
 });

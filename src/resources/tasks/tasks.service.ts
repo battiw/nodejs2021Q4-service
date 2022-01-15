@@ -1,5 +1,6 @@
 import {
-  getTasks,
+  // eslint-disable-next-line import/named
+  findAllTasks,
   postTasksMemory,
   getIdTaskMemory,
   deleteTaskMemory,
@@ -11,7 +12,7 @@ import { ITask } from '../intefases';
  * Service function
  * @returns function call result getTasks
  */
-const getAllTasks = () => getTasks();
+const getAllTasks = () => findAllTasks();
 
 /**
  * Service function
