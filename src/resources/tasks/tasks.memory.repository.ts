@@ -1,6 +1,5 @@
 import { getRepository } from 'typeorm';
 import { Task } from '../../entity/Tasks';
-import { dataArrayTasksDB } from '../db';
 import { ITask } from '../intefases';
 
 /**
@@ -54,14 +53,24 @@ const getIdTaskMemory = async (idTasks: string) => {
  * @param idputTasks - id task
  * @returns Promis changed task data
  */
+
 const putTaskMemory = async (createPutTasks: ITask, idputTasks: string) => {
-  const objTasksPutindex = dataArrayTasksDB.findIndex(
-    (item) => item.id === idputTasks
-  );
-  if (objTasksPutindex !== -1) {
-    dataArrayTasksDB[objTasksPutindex] = createPutTasks;
-  }
-  return dataArrayTasksDB[objTasksPutindex];
+  const taskRepositoryIDPut = getRepository(Task);
+
+  const fineTaskputObject = await taskRepositoryIDPut
+    .createQueryBuilder()
+    .update(Task)
+    .set({
+      title: createPutTasks.title,
+      order: createPutTasks.order,
+      description: createPutTasks.description,
+      userId: createPutTasks.userId,
+      boardId: createPutTasks.boardId,
+      columnId: createPutTasks.columnId,
+    })
+    .where('id = :id', { id: idputTasks })
+    .execute();
+  return fineTaskputObject;
 };
 
 /**
@@ -70,15 +79,15 @@ const putTaskMemory = async (createPutTasks: ITask, idputTasks: string) => {
  * @returns Promis remote task
  */
 const deleteTaskMemory = async (idTasksDel: string) => {
-  const searchDelTasksIndex = dataArrayTasksDB.findIndex(
-    (item) => item.id === idTasksDel
-  );
-  const searchDelTasksItem = dataArrayTasksDB.find(
-    (item) => item.id === idTasksDel
-  );
-  dataArrayTasksDB.splice(searchDelTasksIndex, 1);
+  const taskRepositoryIDdel = getRepository(Task);
 
-  return searchDelTasksItem;
+  const deleteTaskObject = await taskRepositoryIDdel
+    .createQueryBuilder()
+    .delete()
+    .from(Task)
+    .where('id= :id', { id: idTasksDel })
+    .execute();
+  return deleteTaskObject;
 };
 
 export {
