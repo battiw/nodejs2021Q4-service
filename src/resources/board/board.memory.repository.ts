@@ -4,7 +4,6 @@ import { getRepository } from 'typeorm';
 // import { IBoard } from '../intefases';
 import { Board } from '../../entity/Board';
 import { Columns } from '../../entity/Columns';
-// import { Columns } from '../../entity/Columns';
 
 /**
  * Function returns all boards
@@ -28,27 +27,17 @@ const getAllBoardMemory = async () => {
 
 const postBoardMemory = async (createBoard: Board) => {
   console.log(createBoard);
+
+  const arrColumns: Columns[] = createBoard.columns;
+
   const board = new Board();
   board.id = createBoard.id;
   board.title = createBoard.title;
-
-  const createColumns = new Columns();
-  const arrColumns: Columns[] = createBoard.columns;
-  console.log(`arrColumns ====> ${JSON.stringify(arrColumns)}`);
-
-  arrColumns.forEach(function (item) {
-    createColumns.id = item.id;
-    createColumns.title = item.title;
-    createColumns.order = item.order;
-    createColumns.board.id = createBoard.id;
-    getRepository(Columns).save(createColumns);
-  });
-
+  board.columns = arrColumns;
+  await getRepository(Columns).save(arrColumns);
   await getRepository(Board).save(board);
-  return postBoardMemory;
+  return board;
 };
-
-// };
 
 /**
  *Function search for a board with a given id
