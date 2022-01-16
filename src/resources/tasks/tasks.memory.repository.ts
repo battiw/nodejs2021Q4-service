@@ -1,98 +1,49 @@
 import { getRepository } from 'typeorm';
 import { Task } from '../../entity/Tasks';
-import { ITask } from '../intefases';
 
-/**
- * Function returns all tasks
- * @returns Promis array of tasks
- */
-const findAllTasks = async () => {
-  const taskRepository = getRepository(Task);
-  const findAllTasks = await taskRepository.createQueryBuilder().getRawMany();
-  return findAllTasks;
+type TaskType = {
+  id: string;
+  title: string;
+  order: number;
+  description: string;
+  userId: null;
+  boardId: null;
+  columnId: null;
 };
 
-/**
- * Function adds a task to the database
- * @param createTasks - task with parameters
- * @returns Promis added task
- */
-const postTasksMemory = async (createTasks: ITask) => {
-  const task = new Task();
-  task.id = createTasks.id;
-  task.title = createTasks.title;
-  task.order = createTasks.order;
-  task.description = createTasks.description;
-  task.userId = createTasks.userId;
-  task.boardId = createTasks.boardId;
-  task.columnId = createTasks.columnId;
-  await getRepository(Task).save(task);
-  return createTasks;
+const getAllTasks = async () => {
+  const tasksRepository = getRepository(Task);
+  return tasksRepository.find({ where: {} });
 };
 
-/**
- * Function search for a task with a given id
- * @param idTasks - id task
- * @returns Promis an task with the given id
- */
-
-const getIdTaskMemory = async (idTasks: string) => {
-  const taskRepositoryID = getRepository(Task);
-  const findIdTask = await taskRepositoryID
-    .createQueryBuilder('task')
-    .select()
-    .where('task.id = :id', { id: idTasks })
-    .getRawOne();
-  return findIdTask;
+const getTaskByID = async (id: string) => {
+  const tasksRepository = getRepository(Task);
+  return tasksRepository.findOne(id);
 };
 
-/**
- * Function changes user parameters with id
- * @param createPutTasks - task with parameters
- * @param idputTasks - id task
- * @returns Promis changed task data
- */
-
-const putTaskMemory = async (createPutTasks: ITask, idputTasks: string) => {
-  const taskRepositoryIDPut = getRepository(Task);
-
-  const fineTaskputObject = await taskRepositoryIDPut
-    .createQueryBuilder()
-    .update(Task)
-    .set({
-      title: createPutTasks.title,
-      order: createPutTasks.order,
-      description: createPutTasks.description,
-      userId: createPutTasks.userId,
-      boardId: createPutTasks.boardId,
-      columnId: createPutTasks.columnId,
-    })
-    .where('id = :id', { id: idputTasks })
-    .execute();
-  return fineTaskputObject;
+const createTask = async (task: TaskType) => {
+  const tasksRepository = getRepository(Task);
+  const newTask = tasksRepository.create(task);
+  const addedTask = tasksRepository.save(newTask);
+  return addedTask;
 };
 
-/**
- * Function deletes task parameters with id
- * @param idTasksDel - id task
- * @returns Promis remote task
- */
-const deleteTaskMemory = async (idTasksDel: string) => {
-  const taskRepositoryIDdel = getRepository(Task);
-
-  const deleteTaskObject = await taskRepositoryIDdel
-    .createQueryBuilder()
-    .delete()
-    .from(Task)
-    .where('id= :id', { id: idTasksDel })
-    .execute();
-  return deleteTaskObject;
+const updateTask = async (id: string, body: TaskType) => {
+  const tasksRepository = getRepository(Task);
+  tasksRepository.update(id, body);
+  return body;
 };
 
-export {
-  findAllTasks,
-  postTasksMemory,
-  getIdTaskMemory,
-  deleteTaskMemory,
-  putTaskMemory,
+const deleteTask = async (id: string) => {
+  const tasksRepository = getRepository(Task);
+  const res = await tasksRepository.delete(id);
+  return res.raw;
+};
+
+export const taskdRepo = {
+  getAllTasks,
+  getTaskByID,
+  createTask,
+  updateTask,
+  deleteTask,
 };

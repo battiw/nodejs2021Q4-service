@@ -1,53 +1,29 @@
-import {
-  // eslint-disable-next-line import/named
-  findAllTasks,
-  postTasksMemory,
-  getIdTaskMemory,
-  deleteTaskMemory,
-  putTaskMemory,
-} from './tasks.memory.repository';
-import { ITask } from '../intefases';
+import { taskdRepo } from './tasks.memory.repository';
 
-/**
- * Service function
- * @returns function call result getTasks
- */
-const getAllTasks = () => findAllTasks();
+type Task = {
+  id: string;
+  title: string;
+  order: number;
+  description: string;
+  userId: null;
+  boardId: null;
+  columnId: null;
+};
 
-/**
- * Service function
- * @param createTasks  - task with parameters
- * @returns function call result postTasksMemory
- */
-const postTaskServis = (createTasks: ITask) => postTasksMemory(createTasks);
+const allTasks = () => taskdRepo.getAllTasks();
 
-/**
- * Service function
- * @param idTasks -  id task
- * @returns function call result getIdTaskMemory
- */
-const getIdTaskServis = (idTasks: string) => getIdTaskMemory(idTasks);
+const taskByID = (id: string) => taskdRepo.getTaskByID(id);
 
-/**
- * Service function
- * @param createPutTasks - task with parameters
- * @param idNumberPut - id task
- * @returns function call result putTaskMemory
- */
-const putTaskServis = (createPutTasks: ITask, idputTasks: string) =>
-  putTaskMemory(createPutTasks, idputTasks);
+const createdTask = (task: Task) => taskdRepo.createTask(task);
 
-/**
- * Service function
- * @param idTasksDel - id task
- * @returns function call result deleteTaskMemory
- */
-const deleteTaskServis = (idTasksDel: string) => deleteTaskMemory(idTasksDel);
+const updatedTask = (id: string, body: Task) => taskdRepo.updateTask(id, body);
 
-export {
-  getAllTasks,
-  postTaskServis,
-  getIdTaskServis,
-  deleteTaskServis,
-  putTaskServis,
+const deletedTask = (id: string) => taskdRepo.deleteTask(id);
+
+export const tasksService = {
+  allTasks,
+  taskByID,
+  createdTask,
+  updatedTask,
+  deletedTask,
 };

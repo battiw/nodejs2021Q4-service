@@ -5,7 +5,7 @@ import express from 'express';
 import { finished } from 'stream';
 import { logger } from './log/WinstonLog/loggerWinston';
 import { routerUser } from './resources/users/user.router';
-import { boardRouter } from './resources/board/board.router';
+import { routerBoard } from './resources/board/board.router';
 import errorHandler from './log/errorHandler';
 import { config } from './common/config';
 
@@ -54,7 +54,7 @@ app.use((req, res, next) => {
 
 app.use('/users', routerUser);
 
-app.use('/boards', boardRouter);
+app.use('/boards', routerBoard);
 
 app.use(errorHandler);
 

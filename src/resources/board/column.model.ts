@@ -1,4 +1,4 @@
-import { v4 as uuidv4IDColumn } from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 class Column {
   id: string;
@@ -7,10 +7,11 @@ class Column {
 
   order: number;
 
-  constructor({ id = uuidv4IDColumn(), title = 'title', order = 1 } = {}) {
+  constructor({ id = uuid(), title = 'COLUMN', order = 0 } = {}) {
     this.id = id;
     this.title = title;
     this.order = order;
   }
 }
+
 export { Column };

@@ -1,65 +1,44 @@
-// const router = require('express').Router({mergeParams: true});
-import { Request, Response, Router } from 'express';
+import { Router } from 'express';
+import { Board } from '../../entity/Board';
+import { boardsService } from './board.service';
+import { taskRouter } from '../tasks/tasks.router';
 
-// import { Board } from './board.model';
-// import { Board } from '../../entity/Board';
-import {
-  getAllBoardServis,
-  postBoardServis,
-  getIDBoardsServis,
-  putBoardServis,
-  deleteBoardServis,
-} from './board.service';
-import { routerTasks } from '../tasks/tasks.router';
-// import { IBoard } from '../intefases';
+const routerBoard = Router();
 
-const boardRouter = Router({ mergeParams: true });
+routerBoard.use('/:boardId/tasks', taskRouter);
 
-boardRouter.use('/:boardId/tasks', routerTasks);
-
-boardRouter.route('/').get(async (_req: Request, res: Response) => {
-  const boardAll = await getAllBoardServis();
-  res.status(200).json(boardAll);
+routerBoard.route('/').get(async (_req, res) => {
+  const boards = await boardsService.allBoards();
+  res.status(200).json(boards);
 });
 
-boardRouter.route('/').post(async (req: Request, res: Response) => {
-  const createBoard = req.body;
-  const boardPost = await postBoardServis(createBoard);
-  res.status(201).json(boardPost);
-});
-
-boardRouter.route('/:boardId').get(async (req: Request, res: Response) => {
-  const idBoardID = req.params['boardId'];
-  if (idBoardID !== undefined) {
-    const boardsID = await getIDBoardsServis(idBoardID);
-    if (!boardsID) {
-      res.status(404).json();
-    } else {
-      res.status(200).json(boardsID);
-    }
+routerBoard.route('/:boardId').get(async (req, res) => {
+  const id = req.params.boardId;
+  const boardID = await boardsService.boardByID(id);
+  if (!boardID) {
+    res.status(404).json();
+  } else {
+    res.status(200).json(boardID);
   }
 });
 
-boardRouter.route('/:boardId').put(async (req: Request, res: Response) => {
-  const idBoardPut = req.params['boardId'];
-  // const createBorderPut = new Board(req.body);
-  const createBorderPut = req.body;
-  if (idBoardPut !== undefined) {
-    const boardPut = await putBoardServis(idBoardPut, createBorderPut);
-    res.status(200).json(boardPut);
-  }
+routerBoard.route('/').post(async (req, res) => {
+  const addedBoard = await boardsService.createdBoard(new Board(req.body));
+  res.status(201).json(addedBoard);
 });
 
-boardRouter.route('/:boardId').delete(async (req: Request, res: Response) => {
-  const idBoardDelete = req.params['boardId'];
-  if (idBoardDelete !== undefined) {
-    const boardDelete = await deleteBoardServis(idBoardDelete);
-    res.status(200).json(boardDelete);
-  }
+routerBoard.route('/:boardId').put(async (req, res) => {
+  const id = req.params.boardId;
+  const { body } = req;
+  const changedBoard = await boardsService.updatedBoard(id, body);
+
+  res.status(200).json(changedBoard);
 });
 
-boardRouter.use('/*', (_req, res) => {
-  return res.status(400).send('Incorrect path');
+routerBoard.route('/:boardId').delete(async (req, res) => {
+  const id = req.params.boardId;
+  const deletedBoard = await boardsService.deletedBoard(id);
+  res.status(200).json(deletedBoard);
 });
 
-export { boardRouter };
+export { routerBoard };

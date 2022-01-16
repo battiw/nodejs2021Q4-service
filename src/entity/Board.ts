@@ -1,34 +1,23 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
-// eslint-disable-next-line import/no-cycle
-import { Columns } from './Columns';
+import { Column as BoardCol } from '../resources/board/column.model';
 
-/**
- * Board creation funcrion
- *
- * @param id - id board
- * @param title - title board
- * @param columns - array of columns
- */
-@Entity({ name: 'board' })
+@Entity({ name: 'boards' })
 class Board {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn('varchar', { length: 250 })
   id!: string;
 
-  @Column()
+  @Column('varchar', { length: 250 })
   title!: string;
 
-  @OneToMany(() => Columns, (columns) => columns.board)
-  columns!: Columns[];
+  @Column('jsonb', { nullable: true })
+  columns!: BoardCol[];
 
-  // eslint-disable-next-line no-use-before-define
-  static id: Board;
-
-  constructor({ id = uuid(), title = 'title' } = {}) {
+  constructor({ id = uuid(), title = 'BOARD_TITLE', columns = [] } = {}) {
     this.id = id;
     this.title = title;
-    // this.columns = columns.map((colelement) => new Columns(colelement));
+    this.columns = columns.map((col) => new BoardCol(col));
   }
 }
+
 export { Board };

@@ -1,34 +1,34 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
-@Entity({ name: 'task' })
+@Entity({ name: 'tasks' })
 class Task {
-  @PrimaryGeneratedColumn('uuid')
-  id?: string;
+  @PrimaryColumn('varchar', { length: 50 })
+  id!: string;
 
-  @Column()
-  title?: string;
+  @Column('varchar', { length: 50 })
+  title!: string;
 
-  @Column()
-  order?: number;
+  @Column('integer')
+  order: number;
 
-  @Column()
-  description?: string;
+  @Column('varchar', { length: 50 })
+  description: string;
 
-  @Column('uuid')
-  userId: null | undefined | string;
+  @Column('varchar', { length: 50, nullable: true })
+  userId: string | null;
 
-  @Column('uuid')
-  boardId: null | undefined | string;
+  @Column('varchar', { length: 50, nullable: true })
+  boardId: string | null;
 
-  @Column('uuid')
-  columnId: null | undefined | string;
+  @Column('varchar', { length: 50, nullable: true })
+  columnId: string | null;
 
   constructor({
     id = uuid(),
-    title = 'title',
-    order = 1,
-    description = 'description',
+    title = 'Autotest task',
+    order = 0,
+    description = 'Lorem ipsum',
     userId = null,
     boardId = null,
     columnId = null,

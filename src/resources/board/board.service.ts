@@ -1,55 +1,24 @@
-import { Board } from '../../entity/Board';
-// import { IBoard } from '../intefases';
-import {
-  getAllBoardMemory,
-  postBoardMemory,
-  getIDBoardsMemory,
-  putBoardMemory,
-  deleteBoardMemory,
-} from './board.memory.repository';
-// import { IBoard } from '../intefases';
+/* eslint-disable @typescript-eslint/ban-types */
+import { boardRepo } from './board.memory.repository';
 
-/**
- * Service function
- * @returns function call result getAllBoardMemory
- */
-const getAllBoardServis = () => getAllBoardMemory();
+const allBoards = () => boardRepo.getAllBoards();
 
-/**
- * Service function
- * @param createBoard  - board with parameters
- * @returns function call result postBoardMemory
- */
-const postBoardServis = (createBoard: Board) => postBoardMemory(createBoard);
+const boardByID = (id: string) => boardRepo.getBoardByID(id);
 
-/**
- * Service function
- * @param idBoardID -  id board
- * @returns function call result getIDBoardsMemory
- */
-const getIDBoardsServis = (idBoardID: string) => getIDBoardsMemory(idBoardID);
+const createdBoard = (board: { id: string; title: string; columns: {}[] }) =>
+  boardRepo.createBoard(board);
 
-/**
- * Service function
- * @param idBoardPut - id board
- * @param createBorderPut - board with parameters
- * @returns function call result putBoardMemory
- */
-const putBoardServis = (idBoardPut: string, createBorderPut: Board) =>
-  putBoardMemory(idBoardPut, createBorderPut);
+const updatedBoard = (
+  id: string,
+  body: { id: string; title: string; columns: {}[] }
+) => boardRepo.updateBoard(id, body);
 
-/**
- * Service function
- * @param idBoardDelete - id board
- * @returns function call result deleteBoardMemory
- */
-const deleteBoardServis = (idBoardDelete: string) =>
-  deleteBoardMemory(idBoardDelete);
+const deletedBoard = (id: string) => boardRepo.deleteBoard(id);
 
-export {
-  getAllBoardServis,
-  postBoardServis,
-  getIDBoardsServis,
-  putBoardServis,
-  deleteBoardServis,
+export const boardsService = {
+  allBoards,
+  boardByID,
+  createdBoard,
+  updatedBoard,
+  deletedBoard,
 };

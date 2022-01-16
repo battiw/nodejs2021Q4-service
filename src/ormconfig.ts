@@ -7,8 +7,9 @@ export = {
   port: 5432,
   username: 'postgres',
   password: 'qwer',
-  database: 'servicnew', // название базы данных
+  database: 'test', // название базы данных
   synchronize: true,
+  dropSchema: true,
   logging: false,
   entities: ['src/entity/**/*.ts'],
   migrations: ['src/migration/**/*.ts'],
