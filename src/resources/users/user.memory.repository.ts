@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 
 import { IUser } from '../intefases';
 import { User } from '../../entity/User';
+import { Task } from '../../entity/Tasks';
 
 /**
  * Function returns all users
@@ -81,6 +82,19 @@ const deleteUserMemory = async (idNumberDelete: string) => {
     .from(User)
     .where('id= :id', { id: idNumberDelete })
     .execute();
+
+  // eslint-disable-next-line no-unreachable
+  const userAllTaskDelete = getRepository(Task);
+
+  const deleteAllTasks = await userAllTaskDelete
+
+    .createQueryBuilder()
+    .delete()
+    .where('userId= :id', { id: idNumberDelete })
+    .execute();
+
+  console.log(deleteAllTasks);
+
   return deleteObject;
 
   // const userIndex = dataArrayDB.findIndex((el) => el.id === idNumberDelete);
