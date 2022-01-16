@@ -1,12 +1,7 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 import { v4 as uuid } from 'uuid';
+// eslint-disable-next-line import/no-cycle
 import { Columns } from './Columns';
 
 /**
@@ -24,16 +19,16 @@ class Board {
   @Column()
   title!: string;
 
-  @ManyToMany((_type) => Columns)
-  @JoinTable()
-  categories: Columns[] | undefined;
+  @OneToMany(() => Columns, (columns) => columns.board)
+  columns!: Columns[];
 
-  columns: Columns[];
+  // eslint-disable-next-line no-use-before-define
+  static id: Board;
 
-  constructor({ id = uuid(), title = 'title', columns = [] } = {}) {
+  constructor({ id = uuid(), title = 'title' } = {}) {
     this.id = id;
     this.title = title;
-    this.columns = columns.map((colelement) => new Columns(colelement));
+    // this.columns = columns.map((colelement) => new Columns(colelement));
   }
 }
 export { Board };

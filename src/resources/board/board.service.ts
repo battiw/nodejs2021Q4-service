@@ -1,3 +1,5 @@
+import { Board } from '../../entity/Board';
+// import { IBoard } from '../intefases';
 import {
   getAllBoardMemory,
   postBoardMemory,
@@ -5,7 +7,7 @@ import {
   putBoardMemory,
   deleteBoardMemory,
 } from './board.memory.repository';
-import { IBoard } from '../intefases';
+// import { IBoard } from '../intefases';
 
 /**
  * Service function
@@ -18,7 +20,7 @@ const getAllBoardServis = () => getAllBoardMemory();
  * @param createBoard  - board with parameters
  * @returns function call result postBoardMemory
  */
-const postBoardServis = (createBoard: IBoard) => postBoardMemory(createBoard);
+const postBoardServis = (createBoard: Board) => postBoardMemory(createBoard);
 
 /**
  * Service function
@@ -33,7 +35,7 @@ const getIDBoardsServis = (idBoardID: string) => getIDBoardsMemory(idBoardID);
  * @param createBorderPut - board with parameters
  * @returns function call result putBoardMemory
  */
-const putBoardServis = (idBoardPut: string, createBorderPut: IBoard) =>
+const putBoardServis = (idBoardPut: string, createBorderPut: Board) =>
   putBoardMemory(idBoardPut, createBorderPut);
 
 /**

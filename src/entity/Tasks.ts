@@ -21,7 +21,7 @@ class Task {
   @Column('uuid')
   boardId: null | undefined | string;
 
-  @Column('integer')
+  @Column('uuid')
   columnId: null | undefined | string;
 
   constructor({

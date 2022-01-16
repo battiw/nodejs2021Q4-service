@@ -1,7 +1,8 @@
 // const router = require('express').Router({mergeParams: true});
 import { Request, Response, Router } from 'express';
 
-import { Board } from './board.model';
+// import { Board } from './board.model';
+// import { Board } from '../../entity/Board';
 import {
   getAllBoardServis,
   postBoardServis,
@@ -41,7 +42,8 @@ boardRouter.route('/:boardId').get(async (req: Request, res: Response) => {
 
 boardRouter.route('/:boardId').put(async (req: Request, res: Response) => {
   const idBoardPut = req.params['boardId'];
-  const createBorderPut = new Board(req.body);
+  // const createBorderPut = new Board(req.body);
+  const createBorderPut = req.body;
   if (idBoardPut !== undefined) {
     const boardPut = await putBoardServis(idBoardPut, createBorderPut);
     res.status(200).json(boardPut);

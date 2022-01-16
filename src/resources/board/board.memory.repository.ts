@@ -1,8 +1,9 @@
 import { getRepository } from 'typeorm';
 
-import { dataArrayBoardDB, dataArrayTasksDB } from '../db';
-import { IBoard } from '../intefases';
+// import { dataArrayBoardDB, dataArrayTasksDB } from '../db';
+// import { IBoard } from '../intefases';
 import { Board } from '../../entity/Board';
+import { Columns } from '../../entity/Columns';
 // import { Columns } from '../../entity/Columns';
 
 /**
@@ -19,25 +20,29 @@ const getAllBoardMemory = async () => {
   return findAllBoards;
 };
 
-// const getAllBoardMemory = async () => dataArrayBoardDB;
-
 /**
  *Function adds a board to the database
  * @param createBoard - board with parameters
  * @returns Promis added board
  */
-// const postBoardMemory = async (createBoard: IBoard) => {
-// dataArrayBoardDB.push(createBoard);
-// return createBoard;
 
-const postBoardMemory = async (createBoard: IBoard) => {
+const postBoardMemory = async (createBoard: Board) => {
+  console.log(createBoard);
   const board = new Board();
-  // const columns = new Columns();
   board.id = createBoard.id;
   board.title = createBoard.title;
-  // board.children: Columns[] | undefined = new Columns()
-  console.log(`board => ${JSON.stringify(board)}`);
-  // console.log(`columns = > ${JSON.stringify(columns)}`);
+
+  const createColumns = new Columns();
+  const arrColumns: Columns[] = createBoard.columns;
+  console.log(`arrColumns ====> ${JSON.stringify(arrColumns)}`);
+
+  arrColumns.forEach(function (item) {
+    createColumns.id = item.id;
+    createColumns.title = item.title;
+    createColumns.order = item.order;
+    createColumns.board.id = createBoard.id;
+    getRepository(Columns).save(createColumns);
+  });
 
   await getRepository(Board).save(board);
   return postBoardMemory;
@@ -50,11 +55,15 @@ const postBoardMemory = async (createBoard: IBoard) => {
  * @param idBoardID - id board
  * @returns Promis an board with the given id
  */
+
 const getIDBoardsMemory = async (idBoardID: string) => {
-  const idB = dataArrayBoardDB.find(
-    (item: { id: string }) => item.id === idBoardID
-  );
-  return idB;
+  const boardRepositoryID = getRepository(Board);
+  const findIdBoard = await boardRepositoryID
+    .createQueryBuilder('board')
+    .select()
+    .where('users.id = :id', { id: idBoardID })
+    .getRawOne();
+  return findIdBoard;
 };
 
 /**
@@ -63,14 +72,20 @@ const getIDBoardsMemory = async (idBoardID: string) => {
  * @param createBorderPut - board with parameters
  * @returns Promis changed board data
  */
-const putBoardMemory = async (idBoardPut: string, createBorderPut: IBoard) => {
-  const objBoardPutindex = dataArrayBoardDB.findIndex(
-    (item: { id: string }) => item.id === idBoardPut
-  );
-  if (objBoardPutindex !== -1) {
-    dataArrayBoardDB[objBoardPutindex] = createBorderPut;
-  }
-  return dataArrayBoardDB[objBoardPutindex];
+
+const putBoardMemory = async (idBoardPut: string, createBorderPut: Board) => {
+  const putRepositoryIDPut = getRepository(Board);
+
+  const fineputObjectBoard = await putRepositoryIDPut
+    .createQueryBuilder()
+    .update(Board)
+    .set({
+      title: createBorderPut.title,
+      columns: createBorderPut.columns,
+    })
+    .where('id = :id', { id: idBoardPut })
+    .execute();
+  return fineputObjectBoard;
 };
 
 /**
@@ -78,21 +93,33 @@ const putBoardMemory = async (idBoardPut: string, createBorderPut: IBoard) => {
  * @param idBoardDelete - id board
  * @returns Promis remote board
  */
-const deleteBoardMemory = async (idBoardDelete: string) => {
-  const boardIndex = dataArrayBoardDB.findIndex(
-    (el: { id: string }) => el.id === idBoardDelete
-  );
-  const board = dataArrayBoardDB[boardIndex];
-  dataArrayBoardDB.splice(boardIndex, 1);
+// const deleteBoardMemory = async (idBoardDelete: string) => {
+//   const boardIndex = dataArrayBoardDB.findIndex(
+//     (el: { id: string }) => el.id === idBoardDelete
+//   );
+//   const board = dataArrayBoardDB[boardIndex];
+//   dataArrayBoardDB.splice(boardIndex, 1);
 
-  while (dataArrayTasksDB.length !== 0) {
-    const taskIndex = dataArrayTasksDB.findIndex(
-      (el) => el.boardId === idBoardDelete
-    );
-    if (taskIndex === -1) break;
-    dataArrayTasksDB.splice(taskIndex, 1);
-  }
-  return board;
+//   while (dataArrayTasksDB.length !== 0) {
+//     const taskIndex = dataArrayTasksDB.findIndex(
+//       (el) => el.boardId === idBoardDelete
+//     );
+//     if (taskIndex === -1) break;
+//     dataArrayTasksDB.splice(taskIndex, 1);
+//   }
+//   return board;
+// };
+
+const deleteBoardMemory = async (idBoardDelete: string) => {
+  const boardRepositoryIDdel = getRepository(Board);
+
+  const deleteBoardObject = await boardRepositoryIDdel
+    .createQueryBuilder()
+    .delete()
+    .from(Board)
+    .where('id= :id', { id: idBoardDelete })
+    .execute();
+  return deleteBoardObject;
 };
 
 export {

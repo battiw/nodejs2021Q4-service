@@ -41,7 +41,6 @@ const getIdTaskMemory = async (idTasks: string) => {
   const findIdTask = await taskRepositoryID
     .createQueryBuilder('task')
     .select()
-    // .select(['id', 'name', 'login'])
     .where('task.id = :id', { id: idTasks })
     .getRawOne();
   return findIdTask;
