@@ -12,12 +12,10 @@ import { config } from './common/config';
 const { ERROR_LEVEL, LOG_LEVEL, WARN_LEVEL } = config;
 
 const app = express();
-// const app = express.default();
 
 app.use(express.json());
 
 app.use('/', (req, res, next) => {
-  // throw new Error('Ops!!!');
   if (req.originalUrl === '/') {
     res.send('Service is running!');
     return;
@@ -26,7 +24,6 @@ app.use('/', (req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  // throw new Error('Ops!!!');
   const { query, url, body } = req;
 
   next();

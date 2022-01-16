@@ -13,4 +13,9 @@ export const config = {
   LOG_LEVEL: process.env['LOG_LEVEL'],
   WARN_LEVEL: process.env['WARN_LEVEL'],
   ERROR_LEVEL: process.env['ERROR_LEVEL'],
+  POSTGRES_USER: process.env['POSTGRES_USER'],
+  POSTGRES_PASSWORD: process.env['POSTGRES_PASSWORD'],
+  POSTGRES_DB: process.env['POSTGRES_DB'],
+  POSTGRES_PORT: process.env['POSTGRES_PORT'],
+  POSTGRES_HOST: process.env['POSTGRES_HOST'],
 };
