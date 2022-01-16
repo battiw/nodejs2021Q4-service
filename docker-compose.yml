@@ -1,38 +1,32 @@
-version: '3.0'
 services:
-  my-api:
+  api:
     build: .
-    ports:
-      - ${PORT}:${PORT}
     depends_on:
       - postgres
+    ports:
+      - ${PORT}:${PORT}
     environment:
       PORT: ${PORT}
+      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@postgres/${POSTGRES_DB}
     volumes:
-      - .:/app
-      # - ./src/log/WinstonLog:/app/src/log/WinstonLog
+      - ./src:/app/src
+
     networks:
       - connect-network
     restart: on-failure
-
   postgres:
-    build: ./database
-    ports:
-      - ${POSTGRES_PORT}:${POSTGRES_PORT}
-
+    image: postgres:14.1-alpine
+    # postgres:14-alpine
     environment:
-      POSTGRES_PORT: ${POSTGRES_PORT}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - logfile:/var/lib/postgresql
+      - db-data:/var/lib/postgresql/data
+    networks:
       - connect-network
-    restart: on-failure
-
+    restart: always
+volumes:
+  db-data:
 networks:
   connect-network:
     driver: bridge
-
-volumes:
-  logfile:
