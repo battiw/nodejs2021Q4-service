@@ -10,14 +10,13 @@ export = {
   password: config.POSTGRES_PASSWORD || 'postgres',
   database: config.POSTGRES_DB || 'postgres',
   synchronize: true,
-  dropSchema: true,
+  dropSchema: false,
   logging: false,
   entities: ['src/entity/**/*.ts'],
   migrations: ['src/migration/**/*.ts'],
-  subscribers: ['src/subscriber/**/*.ts'],
+  // subscribers: ['src/subscriber/**/*.ts'],
   cli: {
-    entitiesDir: 'src/entity',
     migrationsDir: 'src/migration',
-    subscribersDir: 'src/subscriber',
+    // subscribersDir: 'src/subscriber',
   },
 } as ConnectionOptions;

@@ -20,6 +20,7 @@ taskRouter.route('/:taskId').get(async (req, res) => {
 });
 
 taskRouter.route('/').post(async (req: Request, res) => {
+  // eslint-disable-next-line @typescript-eslint/dot-notation
   req.body.boardId = req.params['boardId'];
   const addedTask = await tasksService.createdTask(req.body);
   res.status(201).json(addedTask);

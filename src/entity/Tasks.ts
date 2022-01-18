@@ -1,5 +1,14 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  ManyToOne /* JoinColumn */,
+} from 'typeorm';
 import { v4 as uuid } from 'uuid';
+// eslint-disable-next-line import/no-cycle
+import { Board } from './Board';
+// eslint-disable-next-line import/no-cycle
+import { User } from './User';
 
 @Entity({ name: 'tasks' })
 class Task {
@@ -23,6 +32,14 @@ class Task {
 
   @Column('varchar', { length: 50, nullable: true })
   columnId: string | null;
+
+  @ManyToOne(() => User, (user) => user.tasks, { onDelete: 'SET NULL' })
+  // @JoinColumn({ name: 'userId' })
+  user!: string;
+
+  @ManyToOne(() => Board, (board) => board.tasks, { onDelete: 'CASCADE' })
+  // @JoinColumn({ name: 'boardId' })
+  board!: string;
 
   constructor({
     id = uuid(),

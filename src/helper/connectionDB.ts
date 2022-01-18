@@ -15,6 +15,7 @@ const connectionDB = async () => {
     } else {
       await createConnection(config);
     }
+    // eslint-disable-next-line @typescript-eslint/dot-notation
     console.log(`Connection to DB to port ${process.env['POSTGRES_PORT']}`);
   } catch (err) {
     console.log('Connection error', err);
