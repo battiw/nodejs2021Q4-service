@@ -18,19 +18,51 @@ git clone {repository URL}
 npm install
 ```
 
-## Running Docker Desktop
+- Installation for local work - [postgresSQL and pgAdmin4](https://www.postgresql.org/).
 
-## Running application
+## Table generation and circulation (PostgreSQL)
 
 ```
+migration file generation
+
+npm run start:generate
+```
+
+```
+run migration file
+
+npm run start:migrate
+```
+
+```
+In synchronize: true file ormconfig.ts change to false
+```
+
+# Server start
+
+npm run start:ts
+
+Server is ready to go
+
+## Starting the server using docker
+
+## Running Docker Desktop
+
+```
+In the file .env hange POSTGRES_HOST=localhost to POSTGRES_HOST=
+```
+
+# container launch
 
 docker-compose up
 
 ```
+Docker contaner is ready to go
 
 After starting the app on port (4000 as default) you can open
 in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
 For more information about OpenAPI/Swagger please visit https://swagger.io/.
+```
 
 ## Testing
 
@@ -39,13 +71,17 @@ After application running open new terminal and enter:
 To run all tests without authorization
 
 ```
+
 npm test
+
 ```
 
 Run documentation
 
 ```
+
 npm run docs
+
 ```
 
 In the folder docs, run the file index.html
@@ -53,36 +89,47 @@ In the folder docs, run the file index.html
 To run only one of all test suites (users, boards or tasks)
 
 ```
+
 npm test <suite name>
+
 ```
 
 To run all test with authorization
 
 ```
+
 npm run test:auth
+
 ```
 
 To run only specific test suite with authorization (users, boards or tasks)
 
 ```
+
 npm run test:auth <suite name>
+
 ```
 
 ## Checking Logging and Handling Errors
 
 ```
+
 npm start:ts (ts-node src/server.ts)
+
 ```
 
 To check the server error, uncomment line 28 file app.ts and check by running tests (npm run test).
 
 ```
+
 For check uncaughtException, uncomment line 79 file app.ts and run npm run start:ts
+
 ```
 
 For check unhandledRejection, uncomment line 82 file app.ts and run npm run start:ts
 
 ```
+
 The logs are located nodejs2021Q4-service\src\log\WinstonLog
 
 ```
@@ -118,6 +165,10 @@ If you're using VSCode, you can get a better developer experience from integrati
 Press <kbd>F5</kbd> to debug.
 
 For more information, visit: https://code.visualstudio.com/docs/editor/debugging
+
+```
+
+```
 
 ```
 

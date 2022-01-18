@@ -1,9 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryColumn,
-  ManyToOne /* JoinColumn */,
-} from 'typeorm';
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 // eslint-disable-next-line import/no-cycle
 import { Board } from './Board';
@@ -34,11 +29,11 @@ class Task {
   columnId: string | null;
 
   @ManyToOne(() => User, (user) => user.tasks, { onDelete: 'SET NULL' })
-  // @JoinColumn({ name: 'userId' })
+  @JoinColumn({ name: 'userId' })
   user!: string;
 
   @ManyToOne(() => Board, (board) => board.tasks, { onDelete: 'CASCADE' })
-  // @JoinColumn({ name: 'boardId' })
+  @JoinColumn({ name: 'boardId' })
   board!: string;
 
   constructor({
