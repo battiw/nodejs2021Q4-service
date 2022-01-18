@@ -9,7 +9,7 @@ export = {
   username: config.POSTGRES_USER || 'postgres',
   password: config.POSTGRES_PASSWORD || 'postgres',
   database: config.POSTGRES_DB || 'postgres',
-  synchronize: true,
+  synchronize: false,
   dropSchema: false,
   logging: false,
   entities: ['src/entity/**/*.ts'],
