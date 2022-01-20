@@ -6,8 +6,10 @@ import { finished } from 'stream';
 import { logger } from './log/WinstonLog/loggerWinston';
 import { routerUser } from './resources/users/user.router';
 import { routerBoard } from './resources/board/board.router';
+import { routerLogin } from './resources/auth/loginRouter';
 import errorHandler from './log/errorHandler';
 import { config } from './common/config';
+import { verification } from './resources/auth/chekToken';
 
 const { ERROR_LEVEL, LOG_LEVEL, WARN_LEVEL } = config;
 
@@ -49,9 +51,11 @@ app.use((req, res, next) => {
   });
 });
 
-app.use('/users', routerUser);
+app.use('/users', verification, routerUser);
 
-app.use('/boards', routerBoard);
+app.use('/boards', verification, routerBoard);
+
+app.use('/login', routerLogin);
 
 app.use(errorHandler);
 

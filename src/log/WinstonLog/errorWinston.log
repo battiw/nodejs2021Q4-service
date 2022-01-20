@@ -63,3 +63,92 @@
 {"level":"error","message":"   Unhandled rejection detected: Sun Jan 16 2022 14:00:24 GMT+0100 (Central European Standard Time) QueryFailedError: missing FROM-clause entry for table \"users\" QueryFailedError: missing FROM-clause entry for table \"users\"\n    at QueryFailedError.TypeORMError [as constructor] (D:\\works\\test\\nodejs2021Q4-service\\src\\error\\TypeORMError.ts:7:9)\n    at new QueryFailedError (D:\\works\\test\\nodejs2021Q4-service\\src\\error\\QueryFailedError.ts:9:9)\n    at PostgresQueryRunner.<anonymous> (D:\\works\\test\\nodejs2021Q4-service\\src\\driver\\postgres\\PostgresQueryRunner.ts:247:19)\n    at step (D:\\works\\test\\nodejs2021Q4-service\\node_modules\\tslib\\tslib.js:143:27)\n    at Object.throw (D:\\works\\test\\nodejs2021Q4-service\\node_modules\\tslib\\tslib.js:124:57)\n    at rejected (D:\\works\\test\\nodejs2021Q4-service\\node_modules\\tslib\\tslib.js:115:69)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)"}
 {"level":"error","message":"   Unhandled rejection detected: Sun Jan 16 2022 14:01:03 GMT+0100 (Central European Standard Time) QueryFailedError: missing FROM-clause entry for table \"users\" QueryFailedError: missing FROM-clause entry for table \"users\"\n    at QueryFailedError.TypeORMError [as constructor] (D:\\works\\test\\nodejs2021Q4-service\\src\\error\\TypeORMError.ts:7:9)\n    at new QueryFailedError (D:\\works\\test\\nodejs2021Q4-service\\src\\error\\QueryFailedError.ts:9:9)\n    at PostgresQueryRunner.<anonymous> (D:\\works\\test\\nodejs2021Q4-service\\src\\driver\\postgres\\PostgresQueryRunner.ts:247:19)\n    at step (D:\\works\\test\\nodejs2021Q4-service\\node_modules\\tslib\\tslib.js:143:27)\n    at Object.throw (D:\\works\\test\\nodejs2021Q4-service\\node_modules\\tslib\\tslib.js:124:57)\n    at rejected (D:\\works\\test\\nodejs2021Q4-service\\node_modules\\tslib\\tslib.js:115:69)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)"}
 {"level":"error","message":"   Unhandled rejection detected: Sun Jan 16 2022 15:42:32 GMT+0100 (Central European Standard Time) TypeORMError: Driver not Connected TypeORMError: Driver not Connected\n    at new TypeORMError (D:\\works\\test\\nodejs2021Q4-service\\src\\error\\TypeORMError.ts:7:9)\n    at PostgresDriver.<anonymous> (D:\\works\\test\\nodejs2021Q4-service\\src\\driver\\postgres\\PostgresDriver.ts:952:19)\n    at step (D:\\works\\test\\nodejs2021Q4-service\\node_modules\\tslib\\tslib.js:143:27)\n    at Object.next (D:\\works\\test\\nodejs2021Q4-service\\node_modules\\tslib\\tslib.js:124:57)\n    at D:\\works\\test\\nodejs2021Q4-service\\node_modules\\tslib\\tslib.js:117:75\n    at new Promise (<anonymous>)\n    at __awaiter (D:\\works\\test\\nodejs2021Q4-service\\node_modules\\tslib\\tslib.js:113:16)\n    at PostgresDriver.obtainMasterConnection (D:\\works\\test\\nodejs2021Q4-service\\node_modules\\typeorm\\driver\\postgres\\PostgresDriver.js:922:38)\n    at PostgresQueryRunner.connect (D:\\works\\test\\nodejs2021Q4-service\\src\\driver\\postgres\\PostgresQueryRunner.ts:101:58)\n    at PostgresQueryRunner.<anonymous> (D:\\works\\test\\nodejs2021Q4-service\\src\\driver\\postgres\\PostgresQueryRunner.ts:206:47)"}
+{"level":"error","message":"   Unhandled rejection detected: Wed Jan 19 2022 15:24:34 GMT+0300 (Москва, стандартное время) TypeError: Converting circular structure to JSON\n    --> starting at object with constructor 'Repository'\n    |     property 'manager' -> object with constructor 'EntityManager'\n    |     property 'repositories' -> object with constructor 'Array'\n    --- index 0 closes the circle TypeError: Converting circular structure to JSON\n    --> starting at object with constructor 'Repository'\n    |     property 'manager' -> object with constructor 'EntityManager'\n    |     property 'repositories' -> object with constructor 'Array'\n    --- index 0 closes the circle\n    at JSON.stringify (<anonymous>)\n    at loginRepository (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginData.ts:12:20)\n    at singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:10:34)\n    at E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:12:23\n    at Layer.handle [as handle_request] (E:\\nodeCurs\\nodejs2021Q4-service\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\nodeCurs\\nodejs2021Q4-service\\node_modules\\express\\lib\\router\\route.js:137:13)\n    at Route.dispatch (E:\\nodeCurs\\nodejs2021Q4-service\\node_modules\\express\\lib\\router\\route.js:112:3)\n    at Layer.handle [as handle_request] (E:\\nodeCurs\\nodejs2021Q4-service\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at E:\\nodeCurs\\nodejs2021Q4-service\\node_modules\\express\\lib\\router\\index.js:281:22\n    at Function.process_params (E:\\nodeCurs\\nodejs2021Q4-service\\node_modules\\express\\lib\\router\\index.js:335:12)"}
+{"level":"error","message":"   Unhandled rejection detected: Wed Jan 19 2022 18:54:43 GMT+0300 (Москва, стандартное время) TypeError: Cannot read properties of undefined (reading 'id') TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:20:27)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:11:14"}
+{"level":"error","message":"   Unhandled rejection detected: Thu Jan 20 2022 13:32:14 GMT+0300 (Москва, стандартное время) TypeError: Cannot read properties of undefined (reading 'id') TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:20:27)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:11:14"}
+{"level":"error","message":"   Unhandled rejection detected: Thu Jan 20 2022 13:32:57 GMT+0300 (Москва, стандартное время) TypeError: Cannot read properties of undefined (reading 'id') TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:20:27)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:11:14"}
+{"level":"error","message":"   Unhandled rejection detected: Thu Jan 20 2022 13:32:57 GMT+0300 (Москва, стандартное время) TypeError: Cannot read properties of undefined (reading 'id') TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:20:27)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:11:14"}
+{"level":"error","message":"   Unhandled rejection detected: Thu Jan 20 2022 13:32:57 GMT+0300 (Москва, стандартное время) TypeError: Cannot read properties of undefined (reading 'id') TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:20:27)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:11:14"}
+{"level":"error","message":"   Unhandled rejection detected: Thu Jan 20 2022 13:42:32 GMT+0300 (Москва, стандартное время) TypeError: Cannot read properties of undefined (reading 'id') TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:20:27)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:11:14"}
+{"level":"error","message":"   Unhandled rejection detected: Thu Jan 20 2022 13:42:32 GMT+0300 (Москва, стандартное время) TypeError: Cannot read properties of undefined (reading 'id') TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:20:27)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:11:14"}
+{"level":"error","message":"   Unhandled rejection detected: Thu Jan 20 2022 13:42:32 GMT+0300 (Москва, стандартное время) TypeError: Cannot read properties of undefined (reading 'id') TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:20:27)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:11:14"}
+{"level":"error","message":"   Unhandled rejection detected: Thu Jan 20 2022 14:22:24 GMT+0300 (Москва, стандартное время) TypeError: Cannot read properties of undefined (reading 'id') TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:20:27)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:11:14"}
+{"level":"error","message":"   Unhandled rejection detected: Thu Jan 20 2022 14:23:06 GMT+0300 (Москва, стандартное время) TypeError: Cannot read properties of undefined (reading 'id') TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.singToken (E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\lorinService.ts:20:27)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async E:\\nodeCurs\\nodejs2021Q4-service\\src\\resources\\auth\\loginRouter.ts:11:14"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
