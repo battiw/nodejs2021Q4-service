@@ -2,6 +2,8 @@ import { getRepository } from 'typeorm';
 import { User } from '../../entity/User';
 import { Task } from '../../entity/Tasks';
 
+import { hashPassword } from '../../hashHelper/chekHash';
+
 const getAllUsers = async () => {
   const usersRepository = getRepository(User);
   return usersRepository.find({ where: {} });
@@ -20,6 +22,8 @@ const createUser = async (user: {
 }) => {
   const usersRepository = getRepository(User);
   const newUser = usersRepository.create(user);
+  const chekPasswordUser = await hashPassword(newUser.password);
+  newUser.password = chekPasswordUser;
   const addedUser = usersRepository.save(newUser);
   return addedUser;
 };

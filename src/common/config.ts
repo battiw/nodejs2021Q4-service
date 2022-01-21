@@ -19,4 +19,5 @@ export const config = {
   POSTGRES_PORT: process.env['POSTGRES_PORT'],
   POSTGRES_HOST: process.env['POSTGRES_HOST'],
   SECRET_KEY: process.env['SECRET_KEY'],
+  DEFAULT_SALT_ROUND: process.env['DEFAULT_SALT_ROUND'],
 };

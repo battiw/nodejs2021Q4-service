@@ -1,9 +1,12 @@
+/* eslint-disable no-else-return */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import jwt from 'jsonwebtoken';
 
 import { repositoryLogin } from './loginData';
 
 import { config } from '../../common/config';
+
+import { chekHashedPassword } from '../../hashHelper/chekHash';
 
 const { SECRET_KEY } = config;
 
@@ -13,18 +16,35 @@ const singToken = async (loginReseive: string, passwordReseive: string) => {
     passwordReseive
   );
 
+  console.log(`u`);
+  console.log(u);
+
   if (!u) {
     return null;
-    // eslint-disable-next-line no-else-return
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    console.log(`hello`);
+    const passAdminHach = u[0]!.password;
+
+    console.log(`passAdminHach`);
+    console.log(passAdminHach);
+    console.log(`passwordReseive`);
+    console.log(passwordReseive);
+
     const idAdmin = u[0]!.id;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const loginAdmin = u[0]!.login;
 
-    const token = jwt.sign({ idAdmin, loginAdmin }, SECRET_KEY!);
+    const comparison = await chekHashedPassword(passwordReseive, passAdminHach);
+    console.log(`comparison`);
+    console.log(comparison);
 
-    return token;
+    if (comparison!) {
+      console.log(`hello2`);
+      const token = jwt.sign({ idAdmin, loginAdmin }, SECRET_KEY!);
+      return token;
+    } else {
+      console.log(`hello3`);
+      return null;
+    }
   }
 };
 
