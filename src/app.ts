@@ -51,11 +51,11 @@ app.use((req, res, next) => {
   });
 });
 
+app.use('/login', routerLogin);
+
 app.use('/users', verification, routerUser);
 
 app.use('/boards', verification, routerBoard);
-
-app.use('/login', routerLogin);
 
 app.use(errorHandler);
 

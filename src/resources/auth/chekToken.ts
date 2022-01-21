@@ -13,14 +13,12 @@ const verification = (req: Request, res: Response, next: NextFunction) => {
     const tokenString = req.header('Authorization');
 
     const [shema, token] = tokenString!.split(' ');
-    if (shema !== 'Bearer') {
+    if (shema !== 'Bearer' || token === undefined || SECRET_KEY === undefined) {
       res.status(401).send('WRONG SHEMA AUTARATION!!!');
     } else {
-      const verificationToken = jwt.verify(token!, SECRET_KEY!);
+      const verificationToken = jwt.verify(token, SECRET_KEY);
       console.log(verificationToken);
-      console.log(
-        `************************************************************`
-      );
+      console.log(`*****************************************************`);
 
       return next();
     }

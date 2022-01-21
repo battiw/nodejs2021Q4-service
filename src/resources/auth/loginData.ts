@@ -1,19 +1,18 @@
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable consistent-return */
 /* eslint-disable no-return-await */
 import { getRepository } from 'typeorm';
 
 import { User } from '../../entity/User';
 
 const loginRepository = async (
-  loginReseive: string,
-  _passwordReseive: string
-) => {
+  loginReseive?: string,
+  _passwordReseive?: string
+): Promise<User[] | undefined> => {
   const findProp = getRepository(User);
-  const aaaa = await findProp.find({
+  const aaaa: User[] = await findProp.find({
     where: { login: loginReseive },
   });
-  console.log(`aaaa`);
-  console.log(aaaa);
-
   return aaaa;
 };
 
