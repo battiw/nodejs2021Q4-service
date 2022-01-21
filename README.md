@@ -25,6 +25,9 @@ npm install
 ```
 migration file generation
 
+Add the script to the file please
+"typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js --config src/ormconfig.ts",
+
 npm run start:generate
 ```
 
