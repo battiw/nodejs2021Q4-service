@@ -262,3 +262,29 @@
 {"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
 {"level":"error","message":"   Unhandled rejection detected: Fri Jan 21 2022 09:59:16 GMT+0300 (Москва, стандартное время) Error: Invalid salt. Salt must be in the form of: $Vers$log2(NumRounds)$saltvalue Error: Invalid salt. Salt must be in the form of: $Vers$log2(NumRounds)$saltvalue"}
 {"level":"error","message":"   Unhandled rejection detected: Fri Jan 21 2022 10:00:09 GMT+0300 (Москва, стандартное время) Error: Invalid salt. Salt must be in the form of: $Vers$log2(NumRounds)$saltvalue Error: Invalid salt. Salt must be in the form of: $Vers$log2(NumRounds)$saltvalue"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}

@@ -647,3 +647,70 @@
 {"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 09:44:44 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /users/fffaa174-0a75-47ca-812a-8b8367bf859e\n Query Parameters: {} Body: {}"}
 {"level":"error","message":"   Unhandled rejection detected: Fri Jan 21 2022 09:59:16 GMT+0300 (Москва, стандартное время) Error: Invalid salt. Salt must be in the form of: $Vers$log2(NumRounds)$saltvalue Error: Invalid salt. Salt must be in the form of: $Vers$log2(NumRounds)$saltvalue"}
 {"level":"error","message":"   Unhandled rejection detected: Fri Jan 21 2022 10:00:09 GMT+0300 (Москва, стандартное время) Error: Invalid salt. Salt must be in the form of: $Vers$log2(NumRounds)$saltvalue Error: Invalid salt. Salt must be in the form of: $Vers$log2(NumRounds)$saltvalue"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /boards\n Query Parameters: {} Body: {}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /boards/12345\n Query Parameters: {} Body: {}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /boards\n Query Parameters: {} Body: {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /boards/12345\n Query Parameters: {} Body: {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /boards/12345\n Query Parameters: {} Body: {}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /users\n Query Parameters: {} Body: {}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /users/123\n Query Parameters: {} Body: {}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /users\n Query Parameters: {} Body: {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /users/12345\n Query Parameters: {} Body: {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /users/12345\n Query Parameters: {} Body: {}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /boards/12345/tasks\n Query Parameters: {} Body: {}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /boards/12345/tasks/12345\n Query Parameters: {} Body: {}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /boards/12345/tasks\n Query Parameters: {} Body: {\"title\":\"Autotest task\",\"order\":0,\"description\":\"Lorem ipsum\",\"userId\":null,\"boardId\":null,\"columnId\":null}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /boards/12345/tasks/12345\n Query Parameters: {} Body: {\"title\":\"Autotest task\",\"order\":0,\"description\":\"Lorem ipsum\",\"userId\":null,\"boardId\":null,\"columnId\":null}"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 401;\n URL: /boards/12345/tasks/12345\n Query Parameters: {} Body: {}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /users\n Query Parameters: {} Body: {}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards\n Query Parameters: {} Body: {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /users\n Query Parameters: {} Body: {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /users\n Query Parameters: {} Body: {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /users\n Query Parameters: {} Body: {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards\n Query Parameters: {} Body: {}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /users/undefined\n Query Parameters: {} Body: {\"name\":\"Autotest updated TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /users\n Query Parameters: {} Body: {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /users/undefined\n Query Parameters: {} Body: {}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /users\n Query Parameters: {} Body: {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards\n Query Parameters: {} Body: {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards/undefined/tasks\n Query Parameters: {} Body: {\"title\":\"Autotest task\",\"order\":0,\"description\":\"Lorem ipsum\",\"userId\":null,\"boardId\":null,\"columnId\":null}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards\n Query Parameters: {} Body: {}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards\n Query Parameters: {} Body: {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards\n Query Parameters: {} Body: {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards/undefined/tasks\n Query Parameters: {} Body: {}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards/undefined\n Query Parameters: {} Body: {\"title\":\"Autotest updated board\"}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards\n Query Parameters: {} Body: {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards\n Query Parameters: {} Body: {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards/undefined\n Query Parameters: {} Body: {}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards/undefined/tasks\n Query Parameters: {} Body: {}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards/undefined/tasks\n Query Parameters: {} Body: {\"title\":\"Autotest task\",\"order\":0,\"description\":\"Lorem ipsum\",\"userId\":null,\"boardId\":null,\"columnId\":null}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards/undefined/tasks\n Query Parameters: {} Body: {\"title\":\"Autotest task\",\"order\":0,\"description\":\"Lorem ipsum\",\"userId\":null,\"boardId\":null,\"columnId\":null}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards/undefined/tasks/undefined\n Query Parameters: {} Body: {\"title\":\"Autotest updated task\"}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards/undefined/tasks/undefined\n Query Parameters: {} Body: {}"}
+{"level":"error","message":"   StatusCode: JsonWebTokenError: jwt malformed"}
+{"level":"warn","message":"     WARN LEVEL => Fri Jan 21 2022 10:05:27 GMT+0300 (Москва, стандартное время)\n StatusCode: 500;\n URL: /boards/undefined\n Query Parameters: {} Body: {}"}
