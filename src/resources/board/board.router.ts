@@ -15,7 +15,7 @@ routerBoard.route('/').get(async (_req, res) => {
 routerBoard.route('/:boardId').get(async (req, res) => {
   const id = req.params.boardId;
   const boardID = await boardsService.boardByID(id);
-  if (!boardID) {
+  if (boardID !== undefined) {
     res.status(404).json();
   } else {
     res.status(200).json(boardID);

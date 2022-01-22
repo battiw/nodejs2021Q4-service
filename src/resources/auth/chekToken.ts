@@ -7,24 +7,37 @@ import { config } from '../../common/config';
 const { SECRET_KEY } = config;
 
 const verification = (req: Request, res: Response, next: NextFunction) => {
-  const authHeader = req.header('Authorization');
+  // console.log(`req.body==========================================>`);
+  // console.log(req.body);
+  const authHeader = req.headers.authorization;
+  // const authHeader = req.headers('Authorization');
+  console.log(`req.header`);
+  // console.log(req.rawHeaders);
+  console.log(authHeader);
 
   if (authHeader !== undefined) {
-    const tokenString = req.header('Authorization');
-
-    const [shema, token] = tokenString!.split(' ');
-    if (shema !== 'Bearer' || token === undefined || SECRET_KEY === undefined) {
+    // const tokenString = req.header('Authorization');
+    // console.log(`XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`);
+    const [shema, token] = authHeader.split(' ');
+    if (
+      shema !== 'Bearer' ||
+      token === undefined /* || SECRET_KEY === undefined */
+    ) {
+      // console.log(`ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`);
       res.status(401).send('WRONG SHEMA AUTARATION!!!');
     } else {
-      const verificationToken = jwt.verify(token, SECRET_KEY);
+      const verificationToken = jwt.verify(token, SECRET_KEY!);
       console.log(verificationToken);
       console.log(`*****************************************************`);
 
       return next();
     }
   } else {
+    // console.log(`AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA`);
     res.status(401).send('WRONG HEADER AUTARISATION!!!');
   }
+
+  //
 };
 
 export { verification };

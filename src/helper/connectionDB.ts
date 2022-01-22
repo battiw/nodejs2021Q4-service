@@ -7,7 +7,7 @@ const connectionDB = async () => {
   try {
     connection = getConnection();
   } catch (err) {
-    console.log('Сonnection has not been established yet... need to wait');
+    console.log(`Сonnection has not been established yet... need to wait `);
   }
 
   try {

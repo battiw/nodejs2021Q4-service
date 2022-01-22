@@ -6,7 +6,12 @@ const routerUser = Router();
 
 routerUser.route('/').get(async (_req: Request, res: Response) => {
   const users = await usersService.allUsers();
-  res.status(200).json(users.map(User.toResponse));
+
+  if (users) {
+    res.status(200).json(users.map(User.toResponse));
+  } else {
+    res.status(401).json('ERROR ALL USERS');
+  }
 });
 
 routerUser.route('/:userId').get(async (req: Request, res: Response) => {
