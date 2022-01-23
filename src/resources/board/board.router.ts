@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { Router } from 'express';
 import { Board } from '../../entity/Board';
 import { boardsService } from './board.service';
@@ -15,11 +16,9 @@ routerBoard.route('/').get(async (_req, res) => {
 routerBoard.route('/:boardId').get(async (req, res) => {
   const id = req.params.boardId;
   const boardID = await boardsService.boardByID(id);
-  if (boardID !== undefined) {
-    res.status(404).json();
-  } else {
-    res.status(200).json(boardID);
-  }
+  if (!boardID) return res.status(404).json({});
+
+  return res.status(200).json(boardID);
 });
 
 routerBoard.route('/').post(async (req, res) => {
@@ -38,7 +37,11 @@ routerBoard.route('/:boardId').put(async (req, res) => {
 routerBoard.route('/:boardId').delete(async (req, res) => {
   const id = req.params.boardId;
   const deletedBoard = await boardsService.deletedBoard(id);
-  res.status(200).json(deletedBoard);
+  if (deletedBoard) {
+    res.status(200).json(deletedBoard);
+  } else {
+    res.status(404).json({});
+  }
 });
 
 export { routerBoard };

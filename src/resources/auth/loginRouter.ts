@@ -10,10 +10,10 @@ routerLogin.route('/').post(async (req: Request, res: Response) => {
 
   const us = await servisLogin.singToken(loginReseive, passwordReseive);
 
-  if (us === null && us === undefined) {
+  if (us === null || us === undefined) {
     res.status(403).json('WRONG');
   } else {
-    res.status(201).json(us);
+    res.status(201).json({ token: us });
   }
 });
 
