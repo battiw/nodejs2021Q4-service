@@ -10,10 +10,10 @@ const loginRepository = async (
   _passwordReseive?: string
 ): Promise<User[] | undefined> => {
   const findProp = getRepository(User);
-  const aaaa: User[] = await findProp.find({
+  const findAdmin: User[] = await findProp.find({
     where: { login: loginReseive },
   });
-  return aaaa;
+  return findAdmin;
 };
 
 export const repositoryLogin = { loginRepository };

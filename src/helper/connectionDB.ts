@@ -23,10 +23,10 @@ const connectionDB = async () => {
   }
 
   const usersRepository = getRepository(User);
-  const newAdmin = new User();
-  const newUser = usersRepository.create(newAdmin);
-  const addedUser = usersRepository.save(newUser);
-  console.log(addedUser);
+  const createAdmin = new User();
+  const admin = usersRepository.create(createAdmin);
+  const addedAdmin = usersRepository.save(admin);
+  console.log(addedAdmin);
 };
 
 export { connectionDB };
