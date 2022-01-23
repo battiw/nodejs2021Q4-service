@@ -1,3 +1,4 @@
+/* eslint-disable import/no-useless-path-segments */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable lines-between-class-members */
 /* eslint-disable no-unreachable */
@@ -9,7 +10,7 @@ import { routerBoard } from './resources/board/board.router';
 import { routerLogin } from './resources/auth/loginRouter';
 import errorHandler from './log/errorHandler';
 import { config } from './common/config';
-import { verification } from './resources/auth/chekToken';
+import { verification } from '../src/midlware/chekToken';
 
 const { ERROR_LEVEL, LOG_LEVEL, WARN_LEVEL } = config;
 
@@ -51,11 +52,19 @@ app.use((req, res, next) => {
   });
 });
 
+app.use('/', verification);
+
 app.use('/login', routerLogin);
 
-app.use('/users', verification, routerUser);
+app.use('/users', routerUser);
 
-app.use('/boards', verification, routerBoard);
+app.use('/boards', routerBoard);
+
+// app.use('/login', routerLogin);
+
+// app.use('/users', verification, routerUser);
+
+// app.use('/boards', verification, routerBoard);
 
 app.use(errorHandler);
 
