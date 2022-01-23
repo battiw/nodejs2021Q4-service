@@ -18,19 +18,44 @@ git clone {repository URL}
 npm install
 ```
 
-## Running Docker Desktop
+- Installation for local work - [postgresSQL and pgAdmin4](https://www.postgresql.org/).
 
-## Running application
+## Authentication and JWT
 
 ```
+npm run start:generate
+```
+
+```
+npm run start:migrate
+```
+
+```
+npm run start:ts
+```
+
+```
+npm run test:auth
+```
+
+## Starting the server using docker
+
+## Running Docker Desktop
+
+```
+In the file .env hange POSTGRES_HOST=localhost to POSTGRES_HOST=
+```
+
+# container launch
 
 docker-compose up
 
 ```
-
+Docker contaner is ready to go
 After starting the app on port (4000 as default) you can open
 in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
 For more information about OpenAPI/Swagger please visit https://swagger.io/.
+```
 
 ## Testing
 
