@@ -1,6 +1,6 @@
-import { getConnection, createConnection /* getRepository */ } from 'typeorm';
+import { getConnection, createConnection, getRepository } from 'typeorm';
 import config from '../ormconfig';
-// import { User } from '../entity/User';
+import { User } from '../entity/User';
 
 const connectionDB = async () => {
   let connection;
@@ -22,11 +22,11 @@ const connectionDB = async () => {
     process.exit(1);
   }
 
-  // const usersRepository = getRepository(User);
-  // const newAdmin = new User();
-  // const newUser = usersRepository.create(newAdmin);
-  // const addedUser = usersRepository.save(newUser);
-  // console.log(addedUser);
+  const usersRepository = getRepository(User);
+  const newAdmin = new User();
+  const newUser = usersRepository.create(newAdmin);
+  const addedUser = usersRepository.save(newUser);
+  console.log(addedUser);
 };
 
 export { connectionDB };

@@ -1,9 +1,8 @@
-/* eslint-disable no-else-return */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/ban-types */
 import { getRepository } from 'typeorm';
 import { Board } from '../../entity/Board';
-import { Task } from '../../entity/Tasks';
+// import { Task } from '../../entity/Tasks';
 
 const getAllBoards = async () => {
   const boardsRepository = getRepository(Board);
@@ -36,25 +35,18 @@ const updateBoard = async (
 };
 
 const deleteBoard = async (id: string) => {
+  // const tasksRepository = getRepository(Task);
+  // const arrayOfTasks = await tasksRepository.find({ where: { boardId: id } });
+  // if (arrayOfTasks.length > 0) {
+  //   for (let i = 0; i < arrayOfTasks.length; i += 1) {
+  //     const idTasks = arrayOfTasks[i]!.id;
+  //     tasksRepository.delete(idTasks);
+  //   }
+  // }
+
   const boardsRepository = getRepository(Board);
-  const findIdBoard = await boardsRepository.find({ where: { id: id } });
-
-  if (findIdBoard[0]?.id !== undefined) {
-    const tasksRepository = getRepository(Task);
-    const arrayOfTasks = await tasksRepository.find({ where: { boardId: id } });
-
-    if (arrayOfTasks.length > 0) {
-      for (let i = 0; i < arrayOfTasks.length; i += 1) {
-        const idTasks = arrayOfTasks[i]!.id;
-        tasksRepository.delete(idTasks);
-      }
-    }
-
-    const res = await boardsRepository.delete(id);
-    return res.raw;
-  } else {
-    return undefined;
-  }
+  const res = await boardsRepository.delete(id);
+  return res.raw;
 };
 
 export const boardRepo = {

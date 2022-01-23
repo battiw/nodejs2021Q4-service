@@ -1,5 +1,7 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+// eslint-disable-next-line import/no-cycle
+import { Task } from './Tasks';
 
 @Entity({ name: 'users' })
 class User {
@@ -14,6 +16,9 @@ class User {
 
   @Column('varchar', { length: 100 })
   password!: string;
+
+  @OneToMany(() => Task, (task) => task.user)
+  tasks!: string;
 
   constructor({
     id = uuid(),

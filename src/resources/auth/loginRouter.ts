@@ -5,7 +5,7 @@ import { servisLogin } from './lorinService';
 const routerLogin = Router();
 
 routerLogin.route('/').post(async (req: Request, res: Response) => {
-  const loginReseive: string | undefined = req.body.login; // const login = "sjf" typeof string и тд
+  const loginReseive: string | undefined = req.body.login;
   const passwordReseive: string | undefined = req.body.password;
 
   const us = await servisLogin.singToken(loginReseive, passwordReseive);

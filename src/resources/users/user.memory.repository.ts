@@ -1,8 +1,6 @@
 import { getRepository } from 'typeorm';
 import { User } from '../../entity/User';
-import { Task } from '../../entity/Tasks';
-
-import { hashPassword } from '../../hashHelper/chekHash';
+// import { Task } from '../../entity/Tasks';
 
 const getAllUsers = async () => {
   const usersRepository = getRepository(User);
@@ -22,8 +20,6 @@ const createUser = async (user: {
 }) => {
   const usersRepository = getRepository(User);
   const newUser = usersRepository.create(user);
-  const chekPasswordUser = await hashPassword(newUser.password);
-  newUser.password = chekPasswordUser;
   const addedUser = usersRepository.save(newUser);
   return addedUser;
 };
@@ -38,16 +34,16 @@ const updateUser = async (
 };
 
 const deleteUser = async (id: string) => {
-  const tasksRepository = getRepository(Task);
-  const arrayOfTasks = await tasksRepository.find({ where: { userId: id } });
-  if (arrayOfTasks.length > 0) {
-    for (let i = 0; i < arrayOfTasks.length; i += 1) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const idTasks = arrayOfTasks[i]!.id;
-      const newObj = { ...arrayOfTasks[i], userId: null };
-      tasksRepository.update(idTasks, newObj);
-    }
-  }
+  // const tasksRepository = getRepository(Task);
+  // const arrayOfTasks = await tasksRepository.find({ where: { userId: id } });
+  // if (arrayOfTasks.length > 0) {
+  //   for (let i = 0; i < arrayOfTasks.length; i += 1) {
+  //     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  //     const idTasks = arrayOfTasks[i]!.id;
+  //     const newObj = { ...arrayOfTasks[i], userId: null };
+  //     tasksRepository.update(idTasks, newObj);
+  //   }
+  // }
   const usersRepository = getRepository(User);
   const res = await usersRepository.delete(id);
   return res.raw;
