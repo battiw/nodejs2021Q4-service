@@ -1,0 +1,32 @@
+services:
+  api:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      PORT: ${PORT}
+      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@postgres/${POSTGRES_DB}
+    volumes:
+      - ./src:/app/src
+
+    networks:
+      - connect-network
+    restart: on-failure
+  postgres:
+    image: postgres:14.1-alpine
+    # postgres:14-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - connect-network
+    restart: always
+volumes:
+  db-data:
+networks:
+  connect-network:
+    driver: bridge
