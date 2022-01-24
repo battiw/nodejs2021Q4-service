@@ -20,6 +20,26 @@ npm install
 
 - Installation for local work - [postgresSQL and pgAdmin4](https://www.postgresql.org/).
 
+```
+Please, if it is not difficult for you, insert this function in the user.memory.repository.ts file instead of the const createUser... function
+
+const createUser = async (user: {
+  id: string;
+  name: string;
+  login: string;
+  password: string;
+}) => {
+  const usersRepository = getRepository(User);
+  const newUser = usersRepository.create(user);
+  const chekPasswordUser = await hashPassword(newUser.password);
+  newUser.password = chekPasswordUser;
+  const addedUser = usersRepository.save(newUser);
+  return addedUser;
+};
+
+It was erroneously replaced with a function from the previous task. Thanks for understanding.
+```
+
 ## Authentication and JWT
 
 ```
