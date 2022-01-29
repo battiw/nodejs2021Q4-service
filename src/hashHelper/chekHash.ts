@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import bcrypt from 'bcrypt';
-import { config } from '../common/config';
+import * as bcrypt from 'bcrypt';
+// import { config } from '../common/config';
 
-const { DEFAULT_SALT_ROUND } = config;
+// const { DEFAULT_SALT_ROUND } = config;
 
 const hashPassword = async (password: string) => {
-  const hash = await bcrypt.hash(password, Number(DEFAULT_SALT_ROUND));
-  //   const hash = await bcrypt.hash(password, DEFAULT_SALT_ROUND!);
-
+  const saltOrRounds = 10;
+  const hash = await bcrypt.hash(password, saltOrRounds);
   return hash;
 };
 

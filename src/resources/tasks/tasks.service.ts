@@ -1,29 +1,39 @@
-import { taskdRepo } from './tasks.memory.repository';
+import { Injectable } from '@nestjs/common';
+import { CreateTasksDto } from './dto/tasks-create.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Tasks } from './tasks.entity';
+import { Repository } from 'typeorm';
+import { UpdateTasksDto } from './dto/tasks-update.dto';
 
-type Task = {
-  id: string;
-  title: string;
-  order: number;
-  description: string;
-  userId: null;
-  boardId: null;
-  columnId: null;
-};
+@Injectable()
+export class TasksService {
+  constructor(
+    @InjectRepository(Tasks) private tasksRepository: Repository<Tasks>,
+  ) {}
 
-const allTasks = () => taskdRepo.getAllTasks();
+  async getAll(): Promise<Tasks[]> {
+    return this.tasksRepository.find();
+  }
 
-const taskByID = (id: string) => taskdRepo.getTaskByID(id);
+  async getOne(id: string): Promise<Tasks> {
+    return this.tasksRepository.findOne(id);
+  }
 
-const createdTask = (task: Task) => taskdRepo.createTask(task);
+  async create(createTasksDto: CreateTasksDto): Promise<Tasks> {
+    return this.tasksRepository.save(createTasksDto);
+    // return this.usersRepository.save({...createUsersDto, id: uuid()});
+    // return newUser.save();
+    // return this.users.push({
+    //   ...createUsersDto,
+    //   id: uuid(),
+    // });
+  }
 
-const updatedTask = (id: string, body: Task) => taskdRepo.updateTask(id, body);
+  async remove(id: string): Promise<void> {
+    this.tasksRepository.delete(id);
+  }
 
-const deletedTask = (id: string) => taskdRepo.deleteTask(id);
-
-export const tasksService = {
-  allTasks,
-  taskByID,
-  createdTask,
-  updatedTask,
-  deletedTask,
-};
+  async update(id: string, updateTasksDto: UpdateTasksDto) {
+    return this.tasksRepository.update(id, updateTasksDto);
+  }
+}

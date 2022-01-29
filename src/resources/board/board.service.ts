@@ -1,24 +1,39 @@
-/* eslint-disable @typescript-eslint/ban-types */
-import { boardRepo } from './board.memory.repository';
+import { Injectable } from '@nestjs/common';
+import { CreateBoardDto } from './dto/board-create.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Board } from './board.entity';
+import { Repository } from 'typeorm';
+import { UpdateBoardDto } from './dto/board-update.dto';
 
-const allBoards = () => boardRepo.getAllBoards();
+@Injectable()
+export class BoardService {
+  constructor(
+    @InjectRepository(Board) private boardRepository: Repository<Board>,
+  ) {}
 
-const boardByID = (id: string) => boardRepo.getBoardByID(id);
+  async getAll(): Promise<Board[]> {
+    return this.boardRepository.find();
+  }
 
-const createdBoard = (board: { id: string; title: string; columns: {}[] }) =>
-  boardRepo.createBoard(board);
+  async getOne(id: string): Promise<Board> {
+    return this.boardRepository.findOne(id);
+  }
 
-const updatedBoard = (
-  id: string,
-  body: { id: string; title: string; columns: {}[] }
-) => boardRepo.updateBoard(id, body);
+  async create(createBoardDto: CreateBoardDto): Promise<Board> {
+    return this.boardRepository.save(createBoardDto);
+    // return this.usersRepository.save({...createUsersDto, id: uuid()});
+    // return newUser.save();
+    // return this.users.push({
+    //   ...createUsersDto,
+    //   id: uuid(),
+    // });
+  }
 
-const deletedBoard = (id: string) => boardRepo.deleteBoard(id);
+  async remove(id: string): Promise<void> {
+    this.boardRepository.delete(id);
+  }
 
-export const boardsService = {
-  allBoards,
-  boardByID,
-  createdBoard,
-  updatedBoard,
-  deletedBoard,
-};
+  async update(id: string, updateBoardDto: UpdateBoardDto) {
+    return this.boardRepository.update(id, updateBoardDto);
+  }
+}
