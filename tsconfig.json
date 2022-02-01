@@ -5,8 +5,8 @@
     "rootDir": ".",
     "downlevelIteration": true,
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -15,7 +15,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "sourceMap": true,
 
     "declaration": true,
@@ -31,5 +31,5 @@
     "noFallthroughCasesInSwitch": false
   },
   "exclude": ["node_modules/"],
-  "include": ["src1/**/*.ts", "loggerWinston.ts"]
+  "include": ["src/**/*.ts", "loggerWinston.ts"]
 }

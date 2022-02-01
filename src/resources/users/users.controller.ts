@@ -17,43 +17,36 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get()
-  getAll(): Promise<User[]> {
-    return this.usersService.getAll();
+  async getAll() {
+    return await this.usersService.getAll();
   }
-
-  //   getAll(): string {
-  //     return 'GetAll';
-  //   }
-
-  //   @Get(':id')
-  //   getOne(@Param() params) {
-  //     return 'getOne' + params.id;
-  //   }
 
   @Get(':id')
-  getOne(@Param('id') id: string): Promise<User> {
-    return this.usersService.getOne(id);
+  async getOne(@Param('id') id: string) {
+    return await this.usersService.getOne(id);
   }
-  //   getOne(@Param('id') id: string): string {
-  //     return 'getOne' + id;
-  //   }
-
   @Post()
-  create(@Body() createUsersDto: CreateUsersDto): Promise<User> {
-    console.log(createUsersDto);
-    return this.usersService.create(createUsersDto);
+  async create(@Body() createUsersDto: CreateUsersDto) {
+    const createUser = await this.usersService.create(createUsersDto);
+    return User.toResponse(createUser);
   }
-  //   create(@Body() createUsersDto: CreateUsersDto): string {
-  //     return `id: ${createUsersDto.id} name:${createUsersDto.name} login:${createUsersDto.login}`;
-  //   }
 
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<void> {
-    return this.usersService.remove(id);
+  async remove(@Param('id') id: string) {
+    const delUser = await this.usersService.remove(id);
+    return User.toResponse(delUser);
+
+    // return this.usersService.remove(id);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateUsersDto: UpdateUsersDto) {
-    return this.usersService.update(id, updateUsersDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateUsersDto: UpdateUsersDto,
+  ) {
+    const putUser = await this.usersService.update(id, updateUsersDto);
+    return User.toResponse(putUser);
+
+    // return this.usersService.update(id, updateUsersDto);
   }
 }

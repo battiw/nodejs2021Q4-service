@@ -12,7 +12,12 @@ const hashPassword = async (password: string) => {
 
 const chekHashedPassword = async (password: string | Buffer, hash: string) => {
   const s = await bcrypt.compare(password, hash);
-  return s;
+  if (!s) {
+    console.log(`Password not Found`);
+    return undefined;
+  } else {
+    return s;
+  }
 };
 
 export { hashPassword, chekHashedPassword };

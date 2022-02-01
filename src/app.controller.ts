@@ -1,5 +1,3 @@
-/* eslint-disable no-empty-function */
-/* eslint-disable no-useless-constructor */
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 

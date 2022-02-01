@@ -6,53 +6,55 @@ import {
   Body,
   Delete,
   Put,
+  Res,
 } from '@nestjs/common';
 import { CreateTasksDto } from './dto/tasks-create.dto';
 import { UpdateTasksDto } from './dto/tasks-update.dto';
 import { TasksService } from './tasks.service';
-import { Tasks } from './tasks.entity';
+import { Request, Response } from 'express';
 
 @Controller('board/:boardId/tasks')
 export class TasksController {
   constructor(private tasksService: TasksService) {}
 
   @Get()
-  getAll(): Promise<Tasks[]> {
-    return this.tasksService.getAll();
+  async getAll(@Res() res: Response) {
+    // const allFindTasks = await this.tasksService.getAll();
+    // console.log(`allFindTasks`);
+    // console.log(allFindTasks);
+
+    return await this.tasksService.getAll();
+
+    // if (allFindTasks === null || allFindTasks === undefined) {
+    //   res.status(404).json('WRONG');
+    // } else {
+    //   res.status(200).json(allFindTasks);
+    // }
   }
-  // getAll(): string {
-  //   return 'GetAll';
-  // }
-
-  //   @Get(':id')
-  //   getOne(@Param() params) {
-  //     return 'getOne' + params.id;
-  //   }
-
   @Get(':id')
-  getOne(@Param('id') id: string): Promise<Tasks> {
-    return this.tasksService.getOne(id);
+  async getOne(@Param('id') id: string) {
+    return await this.tasksService.getOne(id);
   }
-  //   getOne(@Param('id') id: string): string {
-  //     return 'getOne' + id;
-  //   }
 
   @Post()
-  create(@Body() createTasksDto: CreateTasksDto): Promise<Tasks> {
-    console.log(createTasksDto);
-    return this.tasksService.create(createTasksDto);
+  async create(
+    @Param('boardId') boardId: string,
+    @Body() createTasksDto: CreateTasksDto,
+  ) {
+    const newTask = { ...createTasksDto, boardId };
+    return await this.tasksService.create(newTask);
   }
-  //   create(@Body() createUsersDto: CreateUsersDto): string {
-  //     return `id: ${createUsersDto.id} name:${createUsersDto.name} login:${createUsersDto.login}`;
-  //   }
 
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<void> {
-    return this.tasksService.remove(id);
+  async remove(@Param('id') id: string) {
+    return await this.tasksService.remove(id);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateTasksDto: UpdateTasksDto) {
-    return this.tasksService.update(id, updateTasksDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateTasksDto: UpdateTasksDto,
+  ) {
+    return await this.tasksService.update(id, updateTasksDto);
   }
 }

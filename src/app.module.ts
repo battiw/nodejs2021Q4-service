@@ -1,6 +1,3 @@
-/* eslint-disable import/order */
-/* eslint-disable no-empty-function */
-/* eslint-disable no-useless-constructor */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -10,14 +7,19 @@ import { Connection } from 'typeorm';
 import { User } from './resources/users/user.entity';
 import { Tasks } from './resources/tasks/tasks.entity';
 import { Board } from './resources/board/board.entity';
+import { File } from './resources//file/file.entity';
 import { BoardModule } from './resources/board/board.module';
 import { TasksModule } from './resources/tasks/tasks.module';
+import { FileModule } from './resources/file/file.module';
+import { AuthModule } from './resources/auth/auth.module';
 
 @Module({
   imports: [
     UsersModule,
     BoardModule,
     TasksModule,
+    FileModule,
+    AuthModule,
 
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -26,9 +28,10 @@ import { TasksModule } from './resources/tasks/tasks.module';
       username: 'postgres',
       password: 'qwer',
       database: 'postgres',
-      entities: [User, Board, Tasks],
+      entities: [User, Board, Tasks, File],
       synchronize: true,
-      // autoLoadEntities: true,
+      dropSchema: true,
+      autoLoadEntities: true,
     }),
   ],
 

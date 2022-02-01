@@ -11,29 +11,29 @@ export class TasksService {
     @InjectRepository(Tasks) private tasksRepository: Repository<Tasks>,
   ) {}
 
-  async getAll(): Promise<Tasks[]> {
-    return this.tasksRepository.find();
+  async getAll() {
+    // const arrAllTasks = this.tasksRepository;
+    // const allTasks = await arrAllTasks.find();
+    // console.log(`allTasks`);
+    // console.log(allTasks);
+
+    // return allTasks;
+    return await this.tasksRepository.find();
   }
 
-  async getOne(id: string): Promise<Tasks> {
-    return this.tasksRepository.findOne(id);
+  async getOne(id: string) {
+    return await this.tasksRepository.findOne(id);
   }
 
-  async create(createTasksDto: CreateTasksDto): Promise<Tasks> {
-    return this.tasksRepository.save(createTasksDto);
-    // return this.usersRepository.save({...createUsersDto, id: uuid()});
-    // return newUser.save();
-    // return this.users.push({
-    //   ...createUsersDto,
-    //   id: uuid(),
-    // });
+  async create(createTasksDto: CreateTasksDto) {
+    return await this.tasksRepository.save(createTasksDto);
   }
 
-  async remove(id: string): Promise<void> {
-    this.tasksRepository.delete(id);
+  async remove(id: string) {
+    return await this.tasksRepository.delete(id);
   }
 
   async update(id: string, updateTasksDto: UpdateTasksDto) {
-    return this.tasksRepository.update(id, updateTasksDto);
+    return await this.tasksRepository.update(id, updateTasksDto);
   }
 }
