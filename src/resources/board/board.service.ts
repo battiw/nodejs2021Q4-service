@@ -26,7 +26,13 @@ export class BoardService {
   }
 
   async create(createBoardDto: CreateBoardDto) {
-    return this.boardRepository.save(createBoardDto);
+    const boardsRepository = this.boardRepository;
+    const newBoard = boardsRepository.create(createBoardDto);
+    const addedBoard = boardsRepository.save(newBoard);
+    return addedBoard;
+
+    // return this.boardRepository.save(createBoardDto);
+
     // return this.usersRepository.save({...createUsersDto, id: uuid()});
     // return newUser.save();
     // return this.users.push({
@@ -36,7 +42,11 @@ export class BoardService {
   }
 
   async update(id: string, updateBoardDto: UpdateBoardDto) {
-    return await this.boardRepository.update(id, updateBoardDto);
+    const test = this.boardRepository.update(id, updateBoardDto);
+    // return await this.boardRepository.update(id, updateBoardDto);
+    console.log(test);
+
+    return updateBoardDto;
   }
 
   async remove(id: string) {

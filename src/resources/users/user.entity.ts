@@ -24,7 +24,7 @@ export class User {
     id = uuid(),
     name = 'admin',
     login = 'admin',
-    password = '$2a$12$25Z2xXCZGeKXfM/lsypXQe4JZO2sfJxk8xk9ci59sNPpSw4AZCbfu',
+    password = 'admin',
   } = {}) {
     this.id = id;
 

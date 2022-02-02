@@ -11,22 +11,26 @@ export class TasksService {
     @InjectRepository(Tasks) private tasksRepository: Repository<Tasks>,
   ) {}
 
-  async getAll() {
+  async getAll(boardId) {
     // const arrAllTasks = this.tasksRepository;
     // const allTasks = await arrAllTasks.find();
     // console.log(`allTasks`);
     // console.log(allTasks);
 
     // return allTasks;
-    return await this.tasksRepository.find();
+    return await this.tasksRepository.find(boardId);
   }
 
-  async getOne(id: string) {
-    return await this.tasksRepository.findOne(id);
+  async getOne(boardId: string, taskId: string) {
+    return await this.tasksRepository.findOne(taskId);
   }
+  // async getOne(id: string) {
+  //   return await this.tasksRepository.findOne(id);
+  // }
 
   async create(createTasksDto: CreateTasksDto) {
-    return await this.tasksRepository.save(createTasksDto);
+    const createTasks = await this.tasksRepository.save(createTasksDto);
+    return createTasks;
   }
 
   async remove(id: string) {

@@ -49,11 +49,18 @@ export class UsersService {
   }
 
   async update(id: string, updateUsersDto: UpdateUsersDto) {
-    const chekUpdataPasswordUser = await hashPassword(updateUsersDto.password);
-    updateUsersDto.password = chekUpdataPasswordUser;
+    // const chekUpdataPasswordUser = await hashPassword(updateUsersDto.password);
+    // updateUsersDto.password = chekUpdataPasswordUser;
     const arrUsersRepository = this.usersRepository;
-    arrUsersRepository.update(id, updateUsersDto);
+    await arrUsersRepository.update(id, updateUsersDto);
     return updateUsersDto;
     // return this.usersRepository.update(id, updateUsersDto);
+  }
+
+  async getHello() {
+    const createAdmin = new User();
+    const chekPasswordAdmin = await hashPassword(createAdmin.password);
+    createAdmin.password = chekPasswordAdmin;
+    await this.usersRepository.save(createAdmin);
   }
 }

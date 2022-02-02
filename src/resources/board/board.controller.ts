@@ -20,30 +20,21 @@ export class BoardController {
 
   @Get()
   async getAll() {
-    return await this.boardService.getAll();
+    const getBoard = await this.boardService.getAll();
+    return getBoard;
   }
-
-  //   getAll(): string {
-  //     return 'GetAll';
-  //   }
-
-  //   @Get(':id')
-  //   getOne(@Param() params) {
-  //     return 'getOne' + params.id;
-  //   }
 
   @Get(':id')
   async getOne(@Param('id') id: string) {
-    return await this.boardService.getOne(id);
+    const getIdBoard = await this.boardService.getOne(id);
+    return getIdBoard;
   }
-  //   getOne(@Param('id') id: string): string {
-  //     return 'getOne' + id;
-  //   }
 
   @Post()
   async create(@Body() createBoardDto: CreateBoardDto) {
     // console.log(createBoardDto);
-    return await this.boardService.create(createBoardDto);
+    const postBoard = await this.boardService.create(createBoardDto);
+    return postBoard;
   }
   //   create(@Body() createUsersDto: CreateUsersDto): string {
   //     return `id: ${createUsersDto.id} name:${createUsersDto.name} login:${createUsersDto.login}`;
@@ -54,14 +45,16 @@ export class BoardController {
     @Param('id') id: string,
     @Body() updateBoardDto: UpdateBoardDto,
   ) {
-    return await this.boardService.update(id, updateBoardDto);
+    const putBoard = await this.boardService.update(id, updateBoardDto);
+    return putBoard;
   }
 
   @Delete(':id')
-  async remove(@Res() res: Response, @Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     const delBoard = await this.boardService.remove(id);
     console.log(delBoard);
     console.log(typeof delBoard);
+    return delBoard;
 
     // if (delBoard) {
     //   res.status(200).json(delBoard);
