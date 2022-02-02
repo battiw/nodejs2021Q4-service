@@ -11,8 +11,6 @@ import {
 import { CreateBoardDto } from './dto/board-create.dto';
 import { UpdateBoardDto } from './dto/board-update.dto';
 import { BoardService } from './board.service';
-import { Board } from './board.entity';
-import { Request, Response } from 'express';
 
 @Controller('boards')
 export class BoardController {

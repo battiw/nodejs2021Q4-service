@@ -57,10 +57,10 @@ export class UsersService {
     // return this.usersRepository.update(id, updateUsersDto);
   }
 
-  async getHello() {
+  async createAdmin() {
     const createAdmin = new User();
     const chekPasswordAdmin = await hashPassword(createAdmin.password);
     createAdmin.password = chekPasswordAdmin;
-    await this.usersRepository.save(createAdmin);
+    this.usersRepository.save(createAdmin);
   }
 }

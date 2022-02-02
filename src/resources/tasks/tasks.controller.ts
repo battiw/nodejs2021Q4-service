@@ -6,19 +6,18 @@ import {
   Body,
   Delete,
   Put,
-  Res,
   ValidationPipe,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { CreateTasksDto } from './dto/tasks-create.dto';
 import { UpdateTasksDto } from './dto/tasks-update.dto';
 import { TasksService } from './tasks.service';
-import { Request, Response } from 'express';
 
-@Controller('board')
+@Controller('/boards/:boardId/tasks')
 export class TasksController {
   constructor(private tasksService: TasksService) {}
 
-  @Get(':boardId/tasks')
+  @Get()
   async getAll(@Param('boardId') boardId: string) {
     // const allFindTasks = await this.tasksService.getAll();
     // console.log(`allFindTasks`);
@@ -36,18 +35,32 @@ export class TasksController {
   //   return await this.tasksService.getOne(id);
   // }
 
-  @Get(':boardId/tasks/:taskId')
-  getdOne(@Param('boardId') boardId: string, @Param('taskId') taskId: string) {
-    return this.tasksService.getOne(boardId, taskId);
+  // @Get(':boardId/tasks/:taskId')
+  // getdOne(@Param('boardId') boardId: string, @Param('taskId') taskId: string) {
+  //   return this.tasksService.getOne(boardId, taskId);
+  // }
+
+  @Get(':tasksId')
+  getBoard(
+    @Param('boardId', ParseUUIDPipe) boardId: string,
+    @Param('tasksId', ParseUUIDPipe) tasksId: string,
+  ) {
+    return this.tasksService.getOne({ tasksId, boardId });
   }
 
-  @Post(':boardId/tasks')
+  @Post()
   async create(
     @Param('boardId') boardId: string,
     @Body(new ValidationPipe()) createTasksDto: CreateTasksDto,
   ) {
     const newTask = { ...createTasksDto, boardId };
+    console.log(`newTask1`);
+    console.log(newTask);
+
     const postTasks = await this.tasksService.create(newTask);
+    console.log(`postTasks`);
+    console.log(postTasks);
+
     return postTasks;
   }
 

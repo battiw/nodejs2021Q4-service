@@ -12,25 +12,31 @@ export class TasksService {
   ) {}
 
   async getAll(boardId) {
-    // const arrAllTasks = this.tasksRepository;
-    // const allTasks = await arrAllTasks.find();
-    // console.log(`allTasks`);
-    // console.log(allTasks);
-
-    // return allTasks;
-    return await this.tasksRepository.find(boardId);
+    return await this.tasksRepository.find({ where: { boardId } });
   }
 
-  async getOne(boardId: string, taskId: string) {
-    return await this.tasksRepository.findOne(taskId);
+  async getOne({ tasksId, boardId }) {
+    return await this.tasksRepository.findOne(tasksId, boardId);
   }
-  // async getOne(id: string) {
-  //   return await this.tasksRepository.findOne(id);
-  // }
 
   async create(createTasksDto: CreateTasksDto) {
-    const createTasks = await this.tasksRepository.save(createTasksDto);
-    return createTasks;
+    console.log(`createTasksDto`);
+    console.log(createTasksDto);
+
+    const tasksRepository = this.tasksRepository;
+
+    const newTask = tasksRepository.create(createTasksDto);
+    console.log(`newTask`);
+    console.log(newTask);
+
+    const addedTask = await tasksRepository.save(newTask);
+    console.log(`addedTask`);
+    console.log(addedTask);
+
+    return addedTask;
+
+    // const createTasks = await this.tasksRepository.save(createTasksDto);
+    // return createTasks;
   }
 
   async remove(id: string) {
