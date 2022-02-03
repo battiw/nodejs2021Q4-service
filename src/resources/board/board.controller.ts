@@ -6,7 +6,6 @@ import {
   Body,
   Delete,
   Put,
-  Res,
 } from '@nestjs/common';
 import { CreateBoardDto } from './dto/board-create.dto';
 import { UpdateBoardDto } from './dto/board-update.dto';

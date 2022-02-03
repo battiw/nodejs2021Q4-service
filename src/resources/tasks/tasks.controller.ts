@@ -8,12 +8,10 @@ import {
   Put,
   ValidationPipe,
   ParseUUIDPipe,
-  Res,
 } from '@nestjs/common';
 import { CreateTasksDto } from './dto/tasks-create.dto';
 import { UpdateTasksDto } from './dto/tasks-update.dto';
 import { TasksService } from './tasks.service';
-import { Response } from 'express';
 
 @Controller('/boards/:boardId/tasks')
 export class TasksController {
@@ -22,22 +20,7 @@ export class TasksController {
   @Get()
   async getAll() {
     return await this.tasksService.getAll();
-
-    // if (allFindTasks === null || allFindTasks === undefined) {
-    //   res.status(404).json('WRONG');
-    // } else {
-    //   res.status(200).json(allFindTasks);
-    // }
   }
-  // @Get(':id')
-  // async getOne(@Param('id') id: string) {
-  //   return await this.tasksService.getOne(id);
-  // }
-
-  // @Get(':boardId/tasks/:taskId')
-  // getdOne(@Param('boardId') boardId: string, @Param('taskId') taskId: string) {
-  //   return this.tasksService.getOne(boardId, taskId);
-  // }
 
   @Get(':tasksId')
   async getBoard(
@@ -52,18 +35,8 @@ export class TasksController {
     @Param('boardId') boardId: string,
     @Body(new ValidationPipe()) createTasksDto: CreateTasksDto,
   ) {
-    console.log(`createTasksDto1`);
-    console.log(createTasksDto);
-    console.log(`boardId1`);
-    console.log(boardId);
     const newTask = { ...createTasksDto, boardId };
-    console.log(`newTask1`);
-    console.log(newTask);
-
     const postTasks = await this.tasksService.create(newTask);
-    console.log(`postTasks`);
-    console.log(postTasks);
-
     return postTasks;
   }
 
@@ -76,19 +49,6 @@ export class TasksController {
     return putTasks;
   }
 
-  // @Delete(':id')
-  // // async remove(@Param('id') id: string, @Res() res: Response) {
-  // async remove(@Param('id') id: string) {
-  //   const delTasks = await this.tasksService.remove(id);
-  //   console.log(`delTasks`);
-  //   console.log(delTasks);
-  //   // console.log(`res`);
-  //   // console.log(res.statusCode);
-  //   // if (delTasks === []) {
-  //   //   return null;
-  //   // }
-  //   // return delTasks;
-  // }
   @Delete(':tasksId')
   async remove(
     @Param('boardId', ParseUUIDPipe) boardId: string,
@@ -97,12 +57,6 @@ export class TasksController {
     const delTasks = await this.tasksService.remove(boardId, tasksId);
     console.log(`delTasks`);
     console.log(delTasks);
-
-    // console.log(`res`);
-    // console.log(res.statusCode);
-    // if (delTasks === []) {
-    //   return null;
-    // }
     return delTasks;
   }
 }

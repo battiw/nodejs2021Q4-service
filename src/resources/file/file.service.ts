@@ -2,19 +2,24 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm/repository/Repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { File } from './file.entity';
+import { StorageService } from '../storage/storage.service';
+import { CreateFileDto } from '../file/dto/fileCreate.dto';
 
 @Injectable()
 export class FileService {
   constructor(
-    @InjectRepository(File) private usersRepository: Repository<File>,
+    @InjectRepository(File) private fileRepository: Repository<File>,
+    private storageService: StorageService,
   ) {}
 
-  async getOne(id: string) {
-    return this.usersRepository.findOne(id);
-  }
+  async create(createFileDto: CreateFileDto, image: any) {
+    console.log('QQQQ');
 
-  //   async create(createFileDto: CreateFileDto): Promise<User> {
-  //     const chekPasswordUser = await hashPassword(createFileDto.password);
-  //     createUsersDto.password = chekPasswordUser;
-  //     return this.usersRepository.save(createUsersDto);
+    const filename = await this.storageService.createFileStorage(image);
+    const saveFileRep = await this.fileRepository.create({
+      ...createFileDto,
+      image: filename,
+    });
+    return saveFileRep;
+  }
 }

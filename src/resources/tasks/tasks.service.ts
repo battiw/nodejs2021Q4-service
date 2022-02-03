@@ -16,32 +16,19 @@ export class TasksService {
   }
 
   async getOne(boardId: string, id: string) {
-    const a = await this.tasksRepository.findOne({ boardId, id });
+    const resFindOne = await this.tasksRepository.findOne({ boardId, id });
 
-    if (!a) {
+    if (!resFindOne) {
       throw new HttpException('not found', HttpStatus.NOT_FOUND);
     }
-    return a;
+    return resFindOne;
   }
 
   async create(createTasksDto: CreateTasksDto) {
-    console.log(`createTasksDto`);
-    console.log(createTasksDto);
-
     const tasksRepository = this.tasksRepository;
-
     const newTask = tasksRepository.create(createTasksDto);
-    console.log(`newTask`);
-    console.log(newTask);
-
     const addedTask = await tasksRepository.save(newTask);
-    console.log(`addedTask`);
-    console.log(addedTask);
-
     return addedTask;
-
-    // const createTasks = await this.tasksRepository.save(createTasksDto);
-    // return createTasks;
   }
 
   async update(id: string, updateTasksDto: UpdateTasksDto) {
