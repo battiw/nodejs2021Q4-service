@@ -20,11 +20,8 @@ export class TasksController {
   constructor(private tasksService: TasksService) {}
 
   @Get()
-  async getAll(@Param('boardId') boardId: string) {
-    // const allFindTasks = await this.tasksService.getAll();
-    // console.log(`allFindTasks`);
-    // console.log(allFindTasks);
-    return await this.tasksService.getAll(boardId);
+  async getAll() {
+    return await this.tasksService.getAll();
 
     // if (allFindTasks === null || allFindTasks === undefined) {
     //   res.status(404).json('WRONG');
@@ -43,17 +40,11 @@ export class TasksController {
   // }
 
   @Get(':tasksId')
-  getBoard(
+  async getBoard(
     @Param('boardId', ParseUUIDPipe) boardId: string,
     @Param('tasksId', ParseUUIDPipe) tasksId: string,
-    @Res() res: Response,
   ) {
-    const tasksIdReturn = this.tasksService.getOne(tasksId);
-    if (tasksIdReturn === undefined) {
-      res.status(404).json();
-    } else {
-      res.status(200).json(tasksIdReturn);
-    }
+    return this.tasksService.getOne(boardId, tasksId);
   }
 
   @Post()
