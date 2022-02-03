@@ -7,8 +7,6 @@ import * as uuid from 'uuid';
 @Injectable()
 export class StorageService {
   async createFileStorage(file) {
-    console.log(`file`);
-    console.log(file);
     try {
       const unicNameFile = uuid.v4() + '.jpg';
       const pathFile = path.resolve(__dirname, '..', 'static');
@@ -18,7 +16,6 @@ export class StorageService {
       fs.writeFileSync(path.join(pathFile, unicNameFile), file.buffer);
       return unicNameFile;
     } catch (e) {
-      console.log('fffffffffffffffffff');
       throw new HttpException(
         'Error save file',
         HttpStatus.INTERNAL_SERVER_ERROR,

@@ -23,8 +23,6 @@ export class FileController {
   @Post()
   @UseInterceptors(FileInterceptor('image'))
   uploadFile(@Body() createFileDto: CreateFileDto, @UploadedFile() image) {
-    console.log(createFileDto);
-    console.log(image);
     return this.fileService.create(createFileDto, image);
   }
 }

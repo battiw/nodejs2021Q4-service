@@ -13,8 +13,6 @@ export class FileService {
   ) {}
 
   async create(createFileDto: CreateFileDto, image: any) {
-    console.log('QQQQ');
-
     const filename = await this.storageService.createFileStorage(image);
     const saveFileRep = await this.fileRepository.create({
       ...createFileDto,
