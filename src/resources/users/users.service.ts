@@ -59,8 +59,15 @@ export class UsersService {
 
   async createAdmin() {
     const createAdmin = new User();
-    const chekPasswordAdmin = await hashPassword(createAdmin.password);
-    createAdmin.password = chekPasswordAdmin;
-    this.usersRepository.save(createAdmin);
+
+    const adminFind = await this.usersRepository.findOne({
+      where: { login: 'admin', name: 'admin' },
+    });
+    if (!adminFind) {
+      const chekPasswordAdmin = await hashPassword(createAdmin.password);
+      createAdmin.password = chekPasswordAdmin;
+      this.usersRepository.save(createAdmin);
+    }
+    console.log('ADMIN exists');
   }
 }

@@ -39,11 +39,29 @@ export class TasksService {
     // return createTasks;
   }
 
-  async remove(id: string) {
-    return await this.tasksRepository.delete(id);
-  }
-
   async update(id: string, updateTasksDto: UpdateTasksDto) {
     return await this.tasksRepository.update(id, updateTasksDto);
+  }
+
+  async remove(boardId: string, id: string) {
+    const findTask = await this.tasksRepository.find({
+      where: { boardId, id },
+    });
+    console.log(`findTask`);
+    console.log(findTask);
+    console.log(typeof findTask);
+
+    const arrDell = findTask.slice(1);
+    console.log(`arrDell`);
+    console.log(arrDell);
+    console.log(typeof arrDell);
+
+    return arrDell;
+
+    // const deleteTasks =  await this.tasksRepository.delete( tasksId );
+    // // const deleteTasks = await this.tasksRepository.delete( tasksId );
+    // console.log(`deleteTasks`);
+    // console.log(deleteTasks);
+    // return deleteTasks.raw;
   }
 }

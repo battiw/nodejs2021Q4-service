@@ -52,7 +52,7 @@ export class BoardController {
     const delBoard = await this.boardService.remove(id);
     console.log(delBoard);
     console.log(typeof delBoard);
-    return delBoard;
+    // return delBoard;
 
     // if (delBoard) {
     //   res.status(200).json(delBoard);

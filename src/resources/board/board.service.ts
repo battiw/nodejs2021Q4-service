@@ -52,7 +52,11 @@ export class BoardService {
   async remove(id: string) {
     const arrBoardsRepository = this.boardRepository;
     const resultBoardDel = await arrBoardsRepository.delete(id);
-    return await resultBoardDel.raw;
+    console.log(`resultBoardDel`);
+    console.log(resultBoardDel);
+    console.log(typeof resultBoardDel);
+
+    return resultBoardDel.raw;
 
     // this.boardRepository.delete(id);
   }

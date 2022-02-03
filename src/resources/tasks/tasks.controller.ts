@@ -8,10 +8,12 @@ import {
   Put,
   ValidationPipe,
   ParseUUIDPipe,
+  Res,
 } from '@nestjs/common';
 import { CreateTasksDto } from './dto/tasks-create.dto';
 import { UpdateTasksDto } from './dto/tasks-update.dto';
 import { TasksService } from './tasks.service';
+import { Response } from 'express';
 
 @Controller('/boards/:boardId/tasks')
 export class TasksController {
@@ -53,6 +55,10 @@ export class TasksController {
     @Param('boardId') boardId: string,
     @Body(new ValidationPipe()) createTasksDto: CreateTasksDto,
   ) {
+    console.log(`createTasksDto1`);
+    console.log(createTasksDto);
+    console.log(`boardId1`);
+    console.log(boardId);
     const newTask = { ...createTasksDto, boardId };
     console.log(`newTask1`);
     console.log(newTask);
@@ -64,12 +70,6 @@ export class TasksController {
     return postTasks;
   }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    const delTasks = await this.tasksService.remove(id);
-    return delTasks;
-  }
-
   @Put(':id')
   async update(
     @Param('id') id: string,
@@ -77,5 +77,35 @@ export class TasksController {
   ) {
     const putTasks = await this.tasksService.update(id, updateTasksDto);
     return putTasks;
+  }
+
+  // @Delete(':id')
+  // // async remove(@Param('id') id: string, @Res() res: Response) {
+  // async remove(@Param('id') id: string) {
+  //   const delTasks = await this.tasksService.remove(id);
+  //   console.log(`delTasks`);
+  //   console.log(delTasks);
+  //   // console.log(`res`);
+  //   // console.log(res.statusCode);
+  //   // if (delTasks === []) {
+  //   //   return null;
+  //   // }
+  //   // return delTasks;
+  // }
+  @Delete(':tasksId')
+  async remove(
+    @Param('boardId', ParseUUIDPipe) boardId: string,
+    @Param('tasksId', ParseUUIDPipe) tasksId: string,
+  ) {
+    const delTasks = await this.tasksService.remove(boardId, tasksId);
+    console.log(`delTasks`);
+    console.log(delTasks);
+
+    // console.log(`res`);
+    // console.log(res.statusCode);
+    // if (delTasks === []) {
+    //   return null;
+    // }
+    return delTasks;
   }
 }
