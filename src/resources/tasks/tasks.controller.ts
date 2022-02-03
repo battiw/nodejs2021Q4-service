@@ -46,8 +46,14 @@ export class TasksController {
   getBoard(
     @Param('boardId', ParseUUIDPipe) boardId: string,
     @Param('tasksId', ParseUUIDPipe) tasksId: string,
+    @Res() res: Response,
   ) {
-    return this.tasksService.getOne({ tasksId, boardId });
+    const tasksIdReturn = this.tasksService.getOne(tasksId);
+    if (tasksIdReturn === undefined) {
+      res.status(404).json();
+    } else {
+      res.status(200).json(tasksIdReturn);
+    }
   }
 
   @Post()

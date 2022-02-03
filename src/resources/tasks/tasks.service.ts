@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateTasksDto } from './dto/tasks-create.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Tasks } from './tasks.entity';
@@ -15,8 +15,13 @@ export class TasksService {
     return await this.tasksRepository.find({ where: { boardId } });
   }
 
-  async getOne({ tasksId, boardId }) {
-    return await this.tasksRepository.findOne(tasksId, boardId);
+  async getOne(id) {
+    const a = await this.tasksRepository.findOne(id);
+
+    if (!a) {
+      throw new HttpException('not found', HttpStatus.NOT_FOUND);
+    }
+    return a;
   }
 
   async create(createTasksDto: CreateTasksDto) {
@@ -44,19 +49,22 @@ export class TasksService {
   }
 
   async remove(boardId: string, id: string) {
-    const findTask = await this.tasksRepository.find({
-      where: { boardId, id },
+    const findTask = await this.tasksRepository.delete({
+      id,
     });
+    // const findTask = await this.tasksRepository.find({
+    //   where: { boardId, id },
+    // });
     console.log(`findTask`);
     console.log(findTask);
     console.log(typeof findTask);
 
-    const arrDell = findTask.slice(1);
-    console.log(`arrDell`);
-    console.log(arrDell);
-    console.log(typeof arrDell);
+    // const arrDell = findTask.slice(1);
+    // console.log(`arrDell`);
+    // console.log(arrDell);
+    // console.log(typeof arrDell);
 
-    return arrDell;
+    return findTask;
 
     // const deleteTasks =  await this.tasksRepository.delete( tasksId );
     // // const deleteTasks = await this.tasksRepository.delete( tasksId );

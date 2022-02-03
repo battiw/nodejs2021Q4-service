@@ -1,13 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUsersDto } from '../users/dto/usersCreate.dto';
-import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { chekHashedPassword } from 'src/hashHelper/chekHash';
 import { User } from '../users/user.entity';
 import { Repository } from 'typeorm';
-import { token } from 'morgan';
-import { strictEqual } from 'assert';
 
 @Injectable()
 export class AuthService {
@@ -16,21 +13,34 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(createUsersDto: CreateUsersDto) {
+  async login(createUsersDto: CreateUsersDto): Promise<{ token: string }> {
     const arrRepository = await this.usersRepository.findOne({
       login: createUsersDto.login,
     });
+    console.log(` createUsersDto.password`);
+    console.log(createUsersDto.password);
+    console.log(typeof createUsersDto.password);
+    console.log(`arrRepository.password`);
+    console.log(arrRepository.password);
+    console.log(typeof arrRepository.password);
 
     const pasСomparison = await chekHashedPassword(
       createUsersDto.password,
       arrRepository.password,
     );
+    console.log(`pasСomparison`);
+    console.log(pasСomparison);
+    console.log(typeof pasСomparison);
 
     if (pasСomparison) {
+      console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`);
       const userFindId = arrRepository.id;
       const userFindLogin = arrRepository.login;
-      const token = this.jwtService.sign({ userFindId, userFindLogin });
-      return token;
+
+      console.log(userFindId);
+      console.log(userFindLogin);
+      const payload = { username: arrRepository.login, sub: arrRepository.id };
+      return { token: this.jwtService.sign(payload) };
     } else {
       return null;
     }

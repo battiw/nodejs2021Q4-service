@@ -12,12 +12,16 @@ export class AuthController {
 
   @Post()
   async login(@Res() res: Response, @Body() createUsersDto: CreateUsersDto) {
+    // console.log(`createUsersDto`);
+    // console.log(createUsersDto);
+    // console.log(typeof createUsersDto);
+
     const findLogin = await this.autchService.login(createUsersDto);
 
     if (findLogin === null || findLogin === undefined) {
       res.status(403).json('WRONG');
     } else {
-      res.status(201).json({ token: findLogin });
+      res.status(201).json(findLogin);
     }
   }
 }
