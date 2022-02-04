@@ -45,16 +45,12 @@ export class UsersService {
     const arrUsersRepository = this.usersRepository;
     const resultDel = await arrUsersRepository.delete(id);
     return resultDel.raw;
-    // this.usersRepository.delete(id);
   }
 
   async update(id: string, updateUsersDto: UpdateUsersDto) {
-    // const chekUpdataPasswordUser = await hashPassword(updateUsersDto.password);
-    // updateUsersDto.password = chekUpdataPasswordUser;
     const arrUsersRepository = this.usersRepository;
     await arrUsersRepository.update(id, updateUsersDto);
     return updateUsersDto;
-    // return this.usersRepository.update(id, updateUsersDto);
   }
 
   async createAdmin() {

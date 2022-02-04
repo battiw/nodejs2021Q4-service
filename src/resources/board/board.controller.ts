@@ -6,37 +6,40 @@ import {
   Body,
   Delete,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateBoardDto } from './dto/board-create.dto';
 import { UpdateBoardDto } from './dto/board-update.dto';
 import { BoardService } from './board.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('boards')
 export class BoardController {
   constructor(private boardService: BoardService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async getAll() {
     const getBoard = await this.boardService.getAll();
     return getBoard;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getOne(@Param('id') id: string) {
     const getIdBoard = await this.boardService.getOne(id);
     return getIdBoard;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body() createBoardDto: CreateBoardDto) {
     // console.log(createBoardDto);
     const postBoard = await this.boardService.create(createBoardDto);
     return postBoard;
   }
-  //   create(@Body() createUsersDto: CreateUsersDto): string {
-  //     return `id: ${createUsersDto.id} name:${createUsersDto.name} login:${createUsersDto.login}`;
-  //   }
 
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   async update(
     @Param('id') id: string,
@@ -46,18 +49,11 @@ export class BoardController {
     return putBoard;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
     const delBoard = await this.boardService.remove(id);
     console.log(delBoard);
     console.log(typeof delBoard);
-    // return delBoard;
-
-    // if (delBoard) {
-    //   res.status(200).json(delBoard);
-    // } else {
-    //   res.status(404).json({});
-    // }
-    // return this.boardService.remove(id);
   }
 }

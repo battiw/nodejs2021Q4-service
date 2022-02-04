@@ -1,8 +1,6 @@
 import {
   Body,
   Controller,
-  Get,
-  Param,
   Post,
   UploadedFile,
   UseInterceptors,
@@ -14,11 +12,6 @@ import { FileInterceptor } from '@nestjs/platform-express';
 @Controller('file')
 export class FileController {
   constructor(private fileService: FileService) {}
-
-  // @Get(':id')
-  // getOne(@Param('id') id: string) /* : Promise<File> */ {
-  //   return this.fileService.getOne(id);
-  // }
 
   @Post()
   @UseInterceptors(FileInterceptor('image'))

@@ -8,7 +8,9 @@ import {
   Put,
   ValidationPipe,
   ParseUUIDPipe,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateTasksDto } from './dto/tasks-create.dto';
 import { UpdateTasksDto } from './dto/tasks-update.dto';
 import { TasksService } from './tasks.service';
@@ -17,11 +19,13 @@ import { TasksService } from './tasks.service';
 export class TasksController {
   constructor(private tasksService: TasksService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async getAll() {
     return await this.tasksService.getAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':tasksId')
   async getBoard(
     @Param('boardId', ParseUUIDPipe) boardId: string,
@@ -30,6 +34,7 @@ export class TasksController {
     return this.tasksService.getOne(boardId, tasksId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   async create(
     @Param('boardId') boardId: string,
@@ -40,6 +45,7 @@ export class TasksController {
     return postTasks;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   async update(
     @Param('id') id: string,
@@ -49,6 +55,7 @@ export class TasksController {
     return putTasks;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':tasksId')
   async remove(
     @Param('boardId', ParseUUIDPipe) boardId: string,
