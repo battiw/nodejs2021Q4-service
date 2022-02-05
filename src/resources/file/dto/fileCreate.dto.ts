@@ -1,5 +1,10 @@
+import { IsString } from 'class-validator';
+
 export class CreateFileDto {
   id: string;
+
+  @IsString()
   name: string;
-  image: string;
+
+  filesave: string;
 }

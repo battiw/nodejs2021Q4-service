@@ -16,16 +16,15 @@ import { UpdateTasksDto } from './dto/tasks-update.dto';
 import { TasksService } from './tasks.service';
 
 @Controller('/boards/:boardId/tasks')
+@UseGuards(JwtAuthGuard)
 export class TasksController {
   constructor(private tasksService: TasksService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get()
   async getAll() {
     return await this.tasksService.getAll();
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get(':tasksId')
   async getBoard(
     @Param('boardId', ParseUUIDPipe) boardId: string,
@@ -34,36 +33,28 @@ export class TasksController {
     return this.tasksService.getOne(boardId, tasksId);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post()
   async create(
-    @Param('boardId') boardId: string,
+    @Param('boardId', ParseUUIDPipe) boardId: string,
     @Body(new ValidationPipe()) createTasksDto: CreateTasksDto,
   ) {
     const newTask = { ...createTasksDto, boardId };
-    const postTasks = await this.tasksService.create(newTask);
-    return postTasks;
+    return await this.tasksService.create(newTask);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Put(':id')
   async update(
-    @Param('id') id: string,
-    @Body() updateTasksDto: UpdateTasksDto,
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body(new ValidationPipe()) updateTasksDto: UpdateTasksDto,
   ) {
-    const putTasks = await this.tasksService.update(id, updateTasksDto);
-    return putTasks;
+    return await this.tasksService.update(id, updateTasksDto);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Delete(':tasksId')
   async remove(
     @Param('boardId', ParseUUIDPipe) boardId: string,
     @Param('tasksId', ParseUUIDPipe) tasksId: string,
   ) {
-    const delTasks = await this.tasksService.remove(boardId, tasksId);
-    console.log(`delTasks`);
-    console.log(delTasks);
-    return delTasks;
+    return await this.tasksService.remove(boardId, tasksId);
   }
 }

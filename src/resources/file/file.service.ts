@@ -12,12 +12,23 @@ export class FileService {
     private storageService: StorageService,
   ) {}
 
-  async create(createFileDto: CreateFileDto, image: any) {
-    const filename = await this.storageService.createFileStorage(image);
+  async getOneFile(filename: string) {
+    // const findFileOne = await this.fileRepository.findOne(filename);
+    // console.log(findFileOne);
+    // console.log(typeof findFileOne);
+
+    const fileOneWatch = await this.storageService.watchFile(filename);
+    return fileOneWatch;
+  }
+
+  async create(createFileDto: CreateFileDto, filesave) {
+    const filename = await this.storageService.createFileStorage(filesave);
     const saveFileRep = await this.fileRepository.create({
       ...createFileDto,
-      image: filename,
+      filesave: filename,
     });
+    this.fileRepository.save(saveFileRep);
+
     return saveFileRep;
   }
 }

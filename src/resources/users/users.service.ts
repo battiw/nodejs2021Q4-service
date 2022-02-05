@@ -64,6 +64,6 @@ export class UsersService {
       createAdmin.password = chekPasswordAdmin;
       this.usersRepository.save(createAdmin);
     }
-    console.log('ADMIN exists');
+    console.log('ADMIN EXISTS');
   }
 }

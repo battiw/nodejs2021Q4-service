@@ -7,6 +7,10 @@ import {
   Delete,
   Put,
   UseGuards,
+  ValidationPipe,
+  ParseUUIDPipe,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { CreateUsersDto } from '../users/dto/usersCreate.dto';
 import { UpdateUsersDto } from '../users/dto/usersUpdate.dto';
@@ -15,46 +19,46 @@ import { User } from './user.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('users')
+@UseGuards(JwtAuthGuard)
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   async getAll() {
     return await this.usersService.getAll();
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get(':id')
-  async getOne(@Param('id') id: string) {
+  async getOne(@Param('id', ParseUUIDPipe) id: string) {
     return await this.usersService.getOne(id);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post()
-  async create(@Body() createUsersDto: CreateUsersDto) {
+  async create(@Body(new ValidationPipe()) createUsersDto: CreateUsersDto) {
     const createUser = await this.usersService.create(createUsersDto);
     return User.toResponse(createUser);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+  async remove(@Param('id', ParseUUIDPipe) id: string) {
     const delUser = await this.usersService.remove(id);
     return User.toResponse(delUser);
 
     // return this.usersService.remove(id);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Put(':id')
   async update(
-    @Param('id') id: string,
-    @Body() updateUsersDto: UpdateUsersDto,
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body(new ValidationPipe()) updateUsersDto: UpdateUsersDto,
   ) {
     const putUser = await this.usersService.update(id, updateUsersDto);
     return User.toResponse(putUser);
-
     // return this.usersService.update(id, updateUsersDto);
   }
 }
