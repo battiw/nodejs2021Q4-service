@@ -38,7 +38,7 @@ export class User {
     id?: string | undefined;
     name?: string | undefined;
     login?: string | undefined;
-    password?: string | undefined;
+    password: string | undefined;
   }) {
     const { id, name, login } = user;
     return { id, name, login };

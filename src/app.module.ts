@@ -46,50 +46,6 @@ import { APP_FILTER } from '@nestjs/core';
     ServeStaticModule.forRoot({
       rootPath: path.resolve(__dirname, './resources/static'),
     }),
-    // WinstonModule.forRoot({
-    //   transports: [
-    //     new winston.transports.Console({
-    //       format: winston.format.combine(
-    //         winston.format.timestamp(),
-    //         winston.format.ms(),
-    //         nestWinstonModuleUtilities.format.nestLike('NESTLOG', {
-    //           prettyPrint: true,
-    //         }),
-    //       ),
-    //     }),
-
-    //     new winston.transports.File({
-    //       filename: './src/log/WinstonLog/errorWinston.log',
-    //       level: process.env['ERROR_LEVEL'],
-    //       format: winston.format.combine(
-    //         winston.format.uncolorize(),
-    //         winston.format.json(),
-    //       ),
-    //     }),
-    //     new winston.transports.File({
-    //       filename: './src/log/WinstonLog/infoWinston.log',
-    //       level: process.env['LOG_LEVEL'],
-    //       format: winston.format.combine(
-    //         winston.format.timestamp(),
-    //         winston.format.ms(),
-    //         nestWinstonModuleUtilities.format.nestLike('NESTLOG', {
-    //           prettyPrint: true,
-    //         }),
-    //       ),
-    //     }),
-    //     new winston.transports.File({
-    //       filename: './src/log/WinstonLog/warnWinston.log',
-    //       level: process.env['WARN_LEVEL'],
-    //       format: winston.format.combine(
-    //         winston.format.timestamp(),
-    //         winston.format.ms(),
-    //         nestWinstonModuleUtilities.format.nestLike('NESTLOG', {
-    //           prettyPrint: true,
-    //         }),
-    //       ),
-    //     }),
-    //   ],
-    // }),
   ],
 
   controllers: [AppController],

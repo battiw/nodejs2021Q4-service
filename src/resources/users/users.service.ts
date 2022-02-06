@@ -12,33 +12,24 @@ import { hashPassword } from '../../hashHelper/chekHash';
 export class UsersService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>,
-    @InjectRepository(Tasks) private tasksRepository: Repository<Tasks>, // @Inject('winston') private readonly logger: Logger,
+    @InjectRepository(Tasks) private tasksRepository: Repository<Tasks>,
   ) {}
 
   async getAll() {
-    // this.logger.info('Returning suggestions...');
     return await this.usersRepository.find();
   }
 
   async getOne(id: string) {
-    // this.logger.info('Returning suggestions...');
-
     return await this.usersRepository.findOne(id);
   }
 
   async create(createUsersDto: CreateUsersDto) {
-    // this.logger.info('Returning suggestions...');
-    // this.logger.error('Error Returning suggestions...');
-    // this.logger.warn('Warn Returning suggestions...');
-
     const chekPasswordUser = await hashPassword(createUsersDto.password);
     createUsersDto.password = chekPasswordUser;
     return this.usersRepository.save(createUsersDto);
   }
 
   async remove(id: string) {
-    // this.logger.info('Returning suggestions...');
-
     const arrTasksRepository = this.tasksRepository;
     const arrayOfTasks = await arrTasksRepository.find({
       where: { userId: id },
@@ -57,8 +48,6 @@ export class UsersService {
   }
 
   async update(id: string, updateUsersDto: UpdateUsersDto) {
-    // this.logger.info('Returning suggestions...');
-
     const arrUsersRepository = this.usersRepository;
     await arrUsersRepository.update(id, updateUsersDto);
     return updateUsersDto;
