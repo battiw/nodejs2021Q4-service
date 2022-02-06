@@ -9,8 +9,6 @@ import {
   UseGuards,
   ValidationPipe,
   ParseUUIDPipe,
-  HttpException,
-  HttpStatus,
 } from '@nestjs/common';
 import { CreateUsersDto } from '../users/dto/usersCreate.dto';
 import { UpdateUsersDto } from '../users/dto/usersUpdate.dto';
@@ -23,26 +21,22 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  // @UseGuards(JwtAuthGuard)
   @Get()
   async getAll() {
     return await this.usersService.getAll();
   }
 
-  // @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getOne(@Param('id', ParseUUIDPipe) id: string) {
     return await this.usersService.getOne(id);
   }
 
-  // @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body(new ValidationPipe()) createUsersDto: CreateUsersDto) {
     const createUser = await this.usersService.create(createUsersDto);
     return User.toResponse(createUser);
   }
 
-  // @UseGuards(JwtAuthGuard)
   @Delete(':id')
   async remove(@Param('id', ParseUUIDPipe) id: string) {
     const delUser = await this.usersService.remove(id);
@@ -51,7 +45,6 @@ export class UsersController {
     // return this.usersService.remove(id);
   }
 
-  // @UseGuards(JwtAuthGuard)
   @Put(':id')
   async update(
     @Param('id', ParseUUIDPipe) id: string,

@@ -1,5 +1,4 @@
-import { IsIn, IsNumber, IsString } from 'class-validator';
-import { IsNull } from 'typeorm';
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateTasksDto {
   id: string;

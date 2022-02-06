@@ -30,34 +30,16 @@ export class BoardService {
     const newBoard = boardsRepository.create(createBoardDto);
     const addedBoard = boardsRepository.save(newBoard);
     return addedBoard;
-
-    // return this.boardRepository.save(createBoardDto);
-
-    // return this.usersRepository.save({...createUsersDto, id: uuid()});
-    // return newUser.save();
-    // return this.users.push({
-    //   ...createUsersDto,
-    //   id: uuid(),
-    // });
   }
 
   async update(id: string, updateBoardDto: UpdateBoardDto) {
     const test = this.boardRepository.update(id, updateBoardDto);
-    // return await this.boardRepository.update(id, updateBoardDto);
-    console.log(test);
-
     return updateBoardDto;
   }
 
   async remove(id: string) {
     const arrBoardsRepository = this.boardRepository;
     const resultBoardDel = await arrBoardsRepository.delete(id);
-    console.log(`resultBoardDel`);
-    console.log(resultBoardDel);
-    console.log(typeof resultBoardDel);
-
     return resultBoardDel.raw;
-
-    // this.boardRepository.delete(id);
   }
 }
