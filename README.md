@@ -4,6 +4,7 @@
 
 - Git - [Download & Install Git](https://git-scm.com/downloads).
 - Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
+- Docker - [Download & Install Docker](https://docker.com).
 
 ## Downloading
 
@@ -17,56 +18,83 @@ git clone {repository URL}
 npm install
 ```
 
-## Running application
+- Installation for local work - [postgresSQL and pgAdmin4](https://www.postgresql.org/).
 
 ```
-npm start
-```
-
-After starting the app on port (4000 as default) you can open
-in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
-For more information about OpenAPI/Swagger please visit https://swagger.io/.
-
-## Testing
-
-After application running open new terminal and enter:
-
-To run all tests without authorization
 
 ```
-npm test
-```
 
-To run only one of all test suites (users, boards or tasks)
+## NESTjs
 
 ```
-npm test <suite name>
+npm run start
 ```
-
-To run all test with authorization
 
 ```
 npm run test:auth
 ```
 
-To run only specific test suite with authorization (users, boards or tasks)
+```
+To select the platform of use, you must specify in the environment variable
+USE_FASTIFY=express(fastify)
 
 ```
-npm run test:auth <suite name>
-```
-
-## Development
-
-If you're using VSCode, you can get a better developer experience from integration with [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.
-
-### Auto-fix and format
 
 ```
-npm run lint
+
 ```
 
-### Debugging in VSCode
+## Performance measurement
 
-Press <kbd>F5</kbd> to debug.
+```
+Phase started: Express (index: 0, duration: 100s) 21:06:10(+0300)
+Summary report @ 21:07:51(+0300)
+--------------------------------
 
-For more information, visit: https://code.visualstudio.com/docs/editor/debugging
+http.codes.401: ................................................................ 500
+http.request_rate: ............................................................. 5/sec
+http.requests: ................................................................. 500
+http.response_time:
+  min: ......................................................................... 0
+  max: ......................................................................... 9
+  median: ...................................................................... 2
+  p95: ......................................................................... 4
+  p99: ......................................................................... 5
+http.responses: ................................................................ 500
+vusers.completed: .............................................................. 500
+vusers.created: ................................................................ 500
+vusers.created_by_name.Search and buy: ......................................... 500
+vusers.session_length:
+  min: ......................................................................... 2.4
+  max: ......................................................................... 34.2
+  median: ...................................................................... 4.3
+  p95: ......................................................................... 6.6
+  p99: ......................................................................... 10.1
+
+```
+
+```
+Phase started: Fastify (index: 0, duration: 100s) 21:10:35(+0300)
+Summary report @ 21:12:16(+0300)
+--------------------------------
+
+http.codes.404: ................................................................ 500
+http.request_rate: ............................................................. 5/sec
+http.requests: ................................................................. 500
+http.response_time:
+  min: ......................................................................... 0
+  max: ......................................................................... 4
+  median: ...................................................................... 1
+  p95: ......................................................................... 2
+  p99: ......................................................................... 3
+http.responses: ................................................................ 500
+vusers.completed: .............................................................. 500
+vusers.created: ................................................................ 500
+vusers.created_by_name.Search and buy: ......................................... 500
+vusers.session_length:
+  min: ......................................................................... 2.1
+  max: ......................................................................... 30.4
+  median: ...................................................................... 3.2
+  p95: ......................................................................... 5.2
+  p99: ......................................................................... 21.5
+```
