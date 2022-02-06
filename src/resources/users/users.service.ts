@@ -54,8 +54,6 @@ export class UsersService {
   }
 
   async createAdmin() {
-    // this.logger.info('Returning suggestions...');
-
     const createAdmin = new User();
 
     const adminFind = await this.usersRepository.findOne({

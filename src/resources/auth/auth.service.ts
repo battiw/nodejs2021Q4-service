@@ -13,7 +13,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(createUsersDto: CreateUsersDto): Promise<{ token: string }> {
+  async login(createUsersDto: CreateUsersDto): Promise<string> {
     const arrRepository = await this.usersRepository.findOne({
       login: createUsersDto.login,
     });
@@ -25,7 +25,9 @@ export class AuthService {
 
     if (pasСomparison) {
       const payload = { username: arrRepository.login, sub: arrRepository.id };
-      return { token: this.jwtService.sign(payload) };
+      return this.jwtService.sign(payload);
+
+      // return { token: this.jwtService.sign(payload) };
     } else {
       return null;
     }

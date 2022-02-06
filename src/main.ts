@@ -83,6 +83,7 @@ async function bootstrap() {
     const app = await NestFactory.create<NestFastifyApplication>(
       AppModule,
       new FastifyAdapter(),
+      // new FastifyAdapter({ logger: true }),
       {
         logger: WinstonModule.createLogger({
           transports: [
@@ -136,7 +137,7 @@ async function bootstrap() {
     const createAdminService = app.get(UsersService); // select service from repository
     createAdminService.createAdmin(); // sterted function create newadmin
     app.useGlobalFilters(new HttpExceptionFilter());
-    await app.listen(PORT, () =>
+    await app.listen(PORT, '0.0.0.0', () =>
       console.log(`Platform server with FASTIFY started on port ${PORT}`),
     );
   }
